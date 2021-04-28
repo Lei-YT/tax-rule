@@ -1,0 +1,175 @@
+[
+    {
+      "id": "d67aeeb30f94dd90bc1f56d8413db046",
+      "name": "发票",
+      "items": [
+        {
+          "isLoop": true,
+          "title": "发票合计",
+          "sign": "LB10931825",
+          "remarks": "这个时备注",
+          "unites": [
+            {
+              "actionType": "联合条件",
+              "type": "或者",
+              "conditions": [
+                {
+                  "actionType": "条件",
+                  "type": "请选择类型",
+                  "name": "",
+                  "conditions": [
+                    {
+                      "name": "起始符"
+                    },
+                    {
+                      "id": "1",
+                      "name": "发票金额",
+                      "jsonpath": "$.salary",
+                      "type": "BigDecimal",
+                      "remark": ""
+                    },
+                    {
+                      "id": 56,
+                      "name": "加",
+                      "funcAlias": null,
+                      "pid": 55,
+                      "children": []
+                    },
+                    {
+                      "id": "1",
+                      "name": "发票金额",
+                      "jsonpath": "$.salary",
+                      "type": "BigDecimal",
+                      "remark": ""
+                    },
+                    {
+                      "name": "终结符"
+                    },
+                    {
+                      "name": "起始符"
+                    },
+                    {
+                      "id": 32,
+                      "name": "等于",
+                      "funcAlias": null,
+                      "pid": 27,
+                      "children": []
+                    },
+                    {
+                      "name": "终结符"
+                    },
+                    {
+                      "id": "9",
+                      "name": "报销金额",
+                      "jsonpath": "$.amount",
+                      "type": "BigDecimal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "signFactor": [
+            {
+              "type": "or",
+              "rule": "GL39317943",
+              "value": "true"
+            }
+          ],
+          "stopFactor": [
+            {
+              "value": "true"
+            }
+          ],
+          "result": [
+            {
+              "type": "通过",
+              "resultType": "变量报错",
+              "voluation": [
+                {
+                  "id": "1",
+                  "name": "发票金额",
+                  "jsonpath": "$.salary",
+                  "type": "BigDecimal",
+                  "remark": ""
+                },
+                {
+                  "id": "2",
+                  "name": "发票日期",
+                  "jsonpath": "$.billDate",
+                  "type": "Date"
+                }
+              ],
+              "desc": ""
+            }
+          ],
+          "custom": {
+            "collapse": "true"
+          }
+        },
+        {
+          "isLoop": false,
+          "title": "发票去重",
+          "sign": "GL39317943",
+          "remarks": "",
+          "unites": [
+            {
+              "actionType": "联合条件",
+              "type": "或者",
+              "conditions": []
+            }
+          ],
+          "signFactor": [],
+          "stopFactor": [],
+          "result": [],
+          "custom": {
+            "collapse": "true"
+          }
+        }
+      ]
+    },
+    {
+      "id": "e74da6ada4b4b498c6a240156f18543c",
+      "name": "报销单",
+      "items": [
+        {
+          "isLoop": false,
+          "title": "规则-1",
+          "sign": "RF70999904",
+          "remarks": "",
+          "unites": [
+            {
+              "actionType": "联合条件",
+              "type": "或者",
+              "conditions": []
+            }
+          ],
+          "signFactor": [],
+          "stopFactor": [],
+          "result": [],
+          "custom": {
+            "collapse": "true"
+          }
+        },
+        {
+          "isLoop": false,
+          "title": "规则-2",
+          "sign": "HM22746093",
+          "remarks": "",
+          "unites": [
+            {
+              "actionType": "联合条件",
+              "type": "或者",
+              "conditions": []
+            }
+          ],
+          "signFactor": [],
+          "stopFactor": [],
+          "result": [],
+          "custom": {
+            "collapse": "true"
+          }
+        }
+      ]
+    }
+  ]

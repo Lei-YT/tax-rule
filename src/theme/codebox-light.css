@@ -1,0 +1,31 @@
+/* Consolas, Menlo, Monaco, 需要代码粗体可以使用这几个字体 */
+
+/* .cm-s-codebox-light.CodeMirror{border:#eee .5px solid} */
+
+.cm-s-codebox-light  {font-family: 'Courier New', Courier, monospace;color:#666;background:#fff}
+.cm-s-codebox-light span.cm-keyword { line-height:1.5em; font-weight: bold; color: #5A5CAD; }
+.cm-s-codebox-light span.cm-atom { color: #ff9900; } 
+.cm-s-codebox-light span.cm-number { color: #ed4014; }
+.cm-s-codebox-light span.cm-def { color:#1ca862  }
+.cm-s-codebox-light span.cm-variable { color: black; }
+.cm-s-codebox-light span.cm-variable-2 { color:black; }
+.cm-s-codebox-light span.cm-variable-3, .cm-s-codebox-light span.cm-type { color: black; }
+
+.cm-s-codebox-light span.cm-operator {color: #66d9ef; }
+.cm-s-codebox-light span.cm-comment { color: #999; font-style: italic; }
+.cm-s-codebox-light span.cm-string { color: #1ca862; }  /* 右侧文本 */
+.cm-s-codebox-light span.cm-property {color:  #a637ec; } /* 左侧文本 */
+.cm-s-codebox-light span.cm-meta { color: rgb(18, 170, 76); }
+.cm-s-codebox-light span.cm-qualifier { color: grey; }
+.cm-s-codebox-light span.cm-builtin { color: #7EA656; }
+
+.cm-s-codebox-light span.cm-tag { color: #5385f7; }
+.cm-s-codebox-light span.cm-bracket { color: #666; }
+.cm-s-codebox-light span.cm-attribute { color: #bd14a1; }
+.cm-s-codebox-light span.cm-error { color: #f00; }
+
+.cm-s-codebox-light .CodeMirror-linenumber{color:#999}
+.cm-s-codebox-light .CodeMirror-activeline-background { background: #f7f7f7; }
+.cm-s-codebox-light .CodeMirror-matchingbracket { color:#fff !important;background:#43ca86; }
+
+

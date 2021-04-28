@@ -1,0 +1,117 @@
+<template>
+  <div v-cloak>
+    <Modal v-model="isShow" width="460" :mask-closable="false" @on-cancel="cancel">
+      <p slot="header">
+        <b v-show="editType=='edit'">编辑人员信息</b>
+        <b v-show="editType=='ziwu'">职务配置</b>
+      </p>
+      <div>
+        <div class="form-item" v-show="editType=='edit'">
+          <h4 class="form-item-title">员工姓名</h4>
+          <p>
+            <Input v-model="formData.name" placeholder="请输入..." type="text" />
+          </p>
+        </div>
+        <div class="form-item" v-show="editType=='edit'">
+          <h4 class="form-item-title">登录账号</h4>
+          <p>
+            <Input v-model="formData.username" placeholder="请输入..." type="text" />
+          </p>
+        </div>
+        <div class="form-item" v-show="editType=='ziwu'">
+          <h4 class="form-item-title">当前职务</h4>
+          <p>
+            <Select v-model="formData.postIds" multiple style="width:100%">
+              <Option v-for="item in postList" :value="item.id" :key="item.id">{{ item.postName }}</Option>
+            </Select>
+          </p>
+        </div>
+      </div>
+      <div slot="footer" flex>
+        <div flex-box="0">
+          <Button @click="cancel">取消</Button>
+        </div>
+        <div flex-box="1"></div>
+        <div flex-box="0">
+          <Button :loading="submitLoading" type="success" @click="save">提交</Button>
+        </div>
+      </div>
+    </Modal>
+  </div>
+</template>
+
+<script>
+export default {
+  props: ["open", "postList","data","editType"],
+  data() {
+    return {
+      isShow: false,
+      formData: {},
+      submitLoading:false
+    };
+  },
+  computed: {},
+  mounted() {
+    var _this = this;
+    _this.isShow = _this.open
+    _this.formData = JSON.parse(JSON.stringify(_this.data))
+    
+  },
+  methods: {
+    save() {
+      var _this = this;
+      _this.submitLoading = true;
+      if(_this.editType == 'edit'){
+        _this.formData.userId = _this.formData.id
+        _this.$http.post("/user/updateUser", _this.formData).then(res=> {
+          if (res) {
+            _this.isShow = false;
+            _this.$parent.openEditModel = false;
+            _this.$parent.getData();
+          }else{
+              _this.submitLoading = false
+          }
+        });
+      }
+
+      if(_this.editType == 'ziwu'){
+        var userIds  = 
+        _this.$http.put("/user/modify/post",_this.formData).then(res=> {
+          if (res) {
+            _this.isShow = false;
+            _this.$parent.openEditModel = false;
+            _this.$parent.getData();
+          }else{
+              _this.submitLoading = false
+          }
+        });
+      }
+
+
+    },
+    cancel() {
+      this.$parent.openEditModel = false;
+    }
+  }
+};
+</script>
+<style scoped>
+[v-cloak] {
+  display: none;
+}
+.form-item {
+  /* border-bottom: #eee 1px solid; */
+  padding: 10px 0;
+}
+.form-item .form-item-title {
+  margin-bottom: 5px;
+  overflow: hidden;
+}
+</style>
+<style>
+.diy-model-body .ivu-modal-body {
+  height: 500px;
+  overflow-y: auto;
+}
+</style>
+

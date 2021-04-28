@@ -1,0 +1,78 @@
+{
+  "name": "tax-rule",
+  "version": "0.8.1",
+  "description": "tax-rule",
+  "homepage": "http://git.lingcai.cn/xiaoyi/tax_rule",
+  "author": "xiaoyi<398133088@qq.com>",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "codemirror": "^5.54.0",
+    "core-js": "^3.6.4",
+    "flex.css": "^1.1.7",
+    "js-cookie": "^2.2.1",
+    "jsonlint": "^1.6.3",
+    "less": "^2.7.3",
+    "less-loader": "^5.0.0",
+    "lodash": "^4.17.15",
+    "md5": "^2.2.1",
+    "view-design": "^4.0.0",
+    "vue": "^2.6.11",
+    "vue-lazy-render": "^1.0.20",
+    "vue-router": "^3.1.5",
+    "vue-validator": "^3.0.0-alpha.2",
+    "vuedraggable": "^2.23.2",
+    "vuex": "^3.1.2"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.2.0",
+    "@vue/cli-plugin-eslint": "^4.2.0",
+    "@vue/cli-plugin-router": "^4.2.3",
+    "@vue/cli-plugin-vuex": "^4.2.3",
+    "@vue/cli-service": "^4.2.0",
+    "axios": "^0.18.0",
+    "babel-eslint": "^10.0.3",
+    "compression-webpack-plugin": "^3.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.1.2",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2",
+    "script-loader": "^0.7.2",
+    "vue-cli-plugin-axios": "0.0.4",
+    "vue-cli-plugin-viewui": "^2.0.0",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {
+      "generator-star-spacing": "off",
+      "no-tabs": "off",
+      "no-unused-vars": "off",
+      "no-console": "off",
+      "no-irregular-whitespace": "off",
+      "no-debugger": "off",
+      "no-undef": "off",
+      "vue/no-unused-vars": "off",
+      "vue/no-unused-components": "off",
+      "vue/no-parsing-error": "off"
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}
