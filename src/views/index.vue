@@ -7,7 +7,7 @@
     <div class="wrap-box" :style="side?'left:240px':'left:50px'">
       <div class="breadcrumb" flex="cross:center">
         <Breadcrumb>
-          <BreadcrumbItem v-for="(v,i) in breadcrumb" :key="i">{{v.title}}</BreadcrumbItem>
+          <BreadcrumbItem v-for="(v,i) in breadcrumb" :key="i" :to="v.routeName">{{v.title}}</BreadcrumbItem>
         </Breadcrumb>
       </div>
       <router-view />
@@ -28,7 +28,8 @@ export default {
   },
   computed: {},
   mounted() {
-    // console.log(this.breadcrumb)
+    console.log(this.breadcrumb)
+    console.log(this.$route)
     // var _this = this;
     // _this.getHeight()
     // //窗口改变时执行
