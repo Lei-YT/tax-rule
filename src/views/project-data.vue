@@ -57,7 +57,14 @@
                 type="dashed"
                 icon="md-add"
                 @click="openFieldModel"
+                style="margin-right:10px"
               >添加</Button>
+              <Button
+                size="small"
+                slot="extra"
+                type="dashed"
+                @click="showFieldImportModel"
+              >导入</Button>
             </span>
           </div>
 
@@ -130,6 +137,13 @@
       :tableType="tableType"
       :projectId="Number($route.query.id)"
     />
+    <importFieldModel
+      v-if="openFieldImportModel"
+      :open="openFieldImportModel"
+      :data="fieldEditData"
+      :tableType="tableType"
+      :projectId="Number($route.query.id)"
+    />
   </div>
 </template>
 
@@ -138,6 +152,7 @@ import addTableModel from "@/views/project-data-table-add.vue";
 import editTableModel from "@/views/project-data-table-edit.vue";
 import addFieldModel from "@/views/project-data-field-add.vue";
 import editFieldModel from "@/views/project-data-field-edit.vue";
+import importFieldModel from "@/views/project-data-field-import.vue";
 import jsonEditor from "@/components/json-editor.vue";
 export default {
   components: {
@@ -145,6 +160,7 @@ export default {
     editTableModel,
     addFieldModel,
     editFieldModel,
+    importFieldModel,
     jsonEditor,
   },
   data() {
@@ -154,6 +170,7 @@ export default {
       openTableEditModel: false,
       openFieldAddModel: false,
       openFieldEditModel: false,
+      openFieldImportModel: false,
       tableColumns: [
         {
           title: "序号",
@@ -424,6 +441,13 @@ export default {
         return false;
       }
       this.openFieldAddModel = true;
+    },
+    showFieldImportModel() {
+      if (!this.tableData[this.tableIndex]) {
+        this._N("请先选择表");
+        return false;
+      }
+      this.openFieldImportModel = true;
     },
     showTableModel() {
       var _this = this;
