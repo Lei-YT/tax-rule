@@ -5,7 +5,7 @@ util.title = function (title) {
   window.document.title = title;
 };
 
-util.getBreadcrumb = function (data, path, fullpath, indexArray) {
+util.getBreadcrumb = function (data, path, indexArray) {
   let arr = Array.from(indexArray),
     _this = this;
   for (let i = 0, len = data.length; i < len; i++) {
@@ -15,7 +15,7 @@ util.getBreadcrumb = function (data, path, fullpath, indexArray) {
     }
     let children = data[i].children;
     if (children && children.length) {
-      let result = _this.getBreadcrumb(children, path, fullpath, arr);
+      let result = _this.getBreadcrumb(children, path, arr);
       if (result) return result;
     }
     arr.pop();

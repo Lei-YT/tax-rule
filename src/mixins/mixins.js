@@ -41,7 +41,7 @@ export const side = {
         },
         breadcrumb() {
             // console.log(Util.getBreadcrumb(this.$store.state.menuList, this.$route.name, []))
-            return Util.getBreadcrumb(this.$store.state.menuList, this.$route.name, this.$route.fullpath, []);
+            return Util.getBreadcrumb(this.$store.state.menuList, this.$route.name, []);
         },
         openMenus() {
             var openMenus = [];
@@ -51,7 +51,7 @@ export const side = {
             // _.remove(openMenus, function(v,i) {
             //     return i>1
             //   });
-            //   console.log(openMenus)
+            //   console.log(openMenus) 
             return openMenus
         },
         activeName(){
