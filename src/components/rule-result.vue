@@ -1,7 +1,7 @@
 <template>
   <div v-cloak>
     <div flex="cross:center">
-      
+
       <Select
         size="small"
         v-model="items[0].type"
@@ -18,6 +18,7 @@
         placeholder="选择"
         style="width:100px;margin-right:5px"
       >
+        <Option value="预警">预警</Option>
         <Option value="单据报错">单据报错</Option>
         <Option value="影像报错">影像报错</Option>
         <Option value="变量报错">变量报错</Option>
@@ -44,7 +45,7 @@
         </typeChange>
       </span>
 
-      
+
       <Input
         placeholder="不通过时话术"
         size="small"
@@ -55,7 +56,7 @@
 
 
         <Icon @click="del"  color="#999" size="16" class="cursor" type="ios-close-circle-outline" />
-        
+
     </div>
 
 <div style="height:10px"></div>
@@ -68,11 +69,11 @@
 
 
   </div>
-</template> 
+</template>
 
 <script>
 import typeChange from "@/components/type-change.vue";
-import Bus from '@/libs/bus.js'; 
+import Bus from '@/libs/bus.js';
 export default {
   components: { typeChange },
   props: ["items"],
