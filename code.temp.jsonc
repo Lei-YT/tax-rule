@@ -1,0 +1,731 @@
+[
+  {
+    "id": "98382b183082e561774b6dff2614fb00",
+    "name": "1",
+    "items": [
+      {
+        "isList": false,
+        "type": 0,
+        "title": "交易日期且交易金额确定发票",
+        "sign": "QT8828408928",
+        "remarks": "",
+        "unites": [
+          {
+            "actionType": "联合条件",
+            "type": "并且",
+            "conditions": [
+              {
+                "actionType": "条件",
+                "type": "请选择类型",
+                "name": "",
+                "conditions": [
+                  {
+                    "id": 954,
+                    "tableId": 70,
+                    "name": "交易日期",
+                    "jsonpath": "$.HEAD.Detailed[~].Date",
+                    "isTrans": 0,
+                    "type": "Date",
+                    "defaultValue": null,
+                    "remark": "无",
+                    "isSpecial": 0,
+                    "parameter": null,
+                    "inUse": 1,
+                    "createTime": "2021-01-07 10:53:45",
+                    "updateTime": "2021-01-07 17:01:27",
+                    "tableName": "电算化信息(Detailed)",
+                    "tableFieldId": 954
+                  },
+                  {
+                    "id": 34,
+                    "name": "在集合",
+                    "alias": null,
+                    "type": null,
+                    "components": "typeDefaultComp",
+                    "pid": 27,
+                    "enabled": true,
+                    "sort": 8,
+                    "createTime": "2020-07-02 17:26:15",
+                    "updateTime": "2020-08-12 23:11:07",
+                    "children": []
+                  },
+                  {
+                    "name": "List集合",
+                    "conditions": [
+                      {
+                        "variable": {
+                          "id": 961,
+                          "tableId": 71,
+                          "name": "增值税发票日期(List)",
+                          "jsonpath": "$.IMAGES.INVOICE_G.invoiceDate",
+                          "isTrans": 0,
+                          "type": "List",
+                          "defaultValue": null,
+                          "remark": "无",
+                          "isSpecial": 1,
+                          "parameter": null,
+                          "inUse": 1,
+                          "createTime": "2021-01-07 11:18:07",
+                          "updateTime": "2021-01-07 17:01:27",
+                          "tableName": "发票(INVOICE_G)",
+                          "tableFieldId": 961
+                        },
+                        "rule": {}
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "actionType": "条件",
+                "type": "请选择类型",
+                "name": "",
+                "conditions": [
+                  {
+                    "id": 956,
+                    "tableId": 70,
+                    "name": "金额",
+                    "jsonpath": "$.HEAD.Detailed[~].AmountOfMoney",
+                    "isTrans": 0,
+                    "type": "Double",
+                    "defaultValue": null,
+                    "remark": "无",
+                    "isSpecial": 0,
+                    "parameter": null,
+                    "inUse": 1,
+                    "createTime": "2021-01-07 10:54:35",
+                    "updateTime": "2021-01-07 17:01:27",
+                    "tableName": "电算化信息(Detailed)",
+                    "tableFieldId": 956
+                  },
+                  {
+                    "id": 34,
+                    "name": "在集合",
+                    "alias": null,
+                    "type": null,
+                    "components": "typeDefaultComp",
+                    "pid": 27,
+                    "enabled": true,
+                    "sort": 8,
+                    "createTime": "2020-07-02 17:26:15",
+                    "updateTime": "2020-08-12 23:11:07",
+                    "children": []
+                  },
+                  {
+                    "name": "List集合",
+                    "conditions": [
+                      {
+                        "variable": {
+                          "id": 963,
+                          "tableId": 71,
+                          "name": "增值税发票价税合计(List)",
+                          "jsonpath": "$.IMAGES.INVOICE_G.amountTax",
+                          "isTrans": 0,
+                          "type": "List",
+                          "defaultValue": null,
+                          "remark": "无",
+                          "isSpecial": 1,
+                          "parameter": null,
+                          "inUse": 1,
+                          "createTime": "2021-01-07 11:18:48",
+                          "updateTime": "2021-01-07 17:14:48",
+                          "tableName": "发票(INVOICE_G)",
+                          "tableFieldId": 963
+                        },
+                        "rule": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "signFactor": [],
+        "stopFactor": [],
+        "result": [
+          {
+            "type": "通过",
+            "resultType": "变量报错",
+            "voluation": [],
+            "desc": ""
+          }
+        ],
+        "custom": {
+          "collapse": true
+        }
+      },
+      {
+        "isList": false,
+        "type": 0,
+        "title": "交易日期确定发票",
+        "sign": "LQ5391100803",
+        "remarks": "",
+        "unites": [
+          {
+            "actionType": "联合条件",
+            "type": "或者",
+            "conditions": [
+              {
+                "actionType": "条件",
+                "type": "请选择类型",
+                "name": "",
+                "conditions": [
+                  {
+                    "id": 954,
+                    "tableId": 70,
+                    "name": "交易日期",
+                    "jsonpath": "$.HEAD.Detailed[~].Date",
+                    "isTrans": 0,
+                    "type": "Date",
+                    "defaultValue": null,
+                    "remark": "无",
+                    "isSpecial": 0,
+                    "parameter": null,
+                    "inUse": 1,
+                    "createTime": "2021-01-07 10:53:45",
+                    "updateTime": "2021-01-07 17:01:27",
+                    "tableName": "电算化信息(Detailed)",
+                    "tableFieldId": 954
+                  },
+                  {
+                    "id": 34,
+                    "name": "在集合",
+                    "alias": null,
+                    "type": null,
+                    "components": "typeDefaultComp",
+                    "pid": 27,
+                    "enabled": true,
+                    "sort": 8,
+                    "createTime": "2020-07-02 17:26:15",
+                    "updateTime": "2020-08-12 23:11:07",
+                    "children": []
+                  },
+                  {
+                    "name": "List集合",
+                    "conditions": [
+                      {
+                        "variable": {
+                          "id": 961,
+                          "tableId": 71,
+                          "name": "增值税发票日期(List)",
+                          "jsonpath": "$.IMAGES.INVOICE_G.invoiceDate",
+                          "isTrans": 0,
+                          "type": "List",
+                          "defaultValue": null,
+                          "remark": "无",
+                          "isSpecial": 1,
+                          "parameter": null,
+                          "inUse": 1,
+                          "createTime": "2021-01-07 11:18:07",
+                          "updateTime": "2021-01-07 17:01:27",
+                          "tableName": "发票(INVOICE_G)",
+                          "tableFieldId": 961
+                        },
+                        "rule": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "signFactor": [
+          {
+            "type": "or",
+            "rule": "QT8828408928",
+            "value": "false"
+          }
+        ],
+        "stopFactor": [],
+        "result": [
+          {
+            "type": "通过",
+            "resultType": "变量报错",
+            "voluation": [],
+            "desc": ""
+          }
+        ],
+        "custom": {
+          "collapse": false
+        }
+      },
+      {
+        "isList": false,
+        "type": 0,
+        "title": "交易金额确定发票",
+        "sign": "PW3396768419",
+        "remarks": "",
+        "unites": [
+          {
+            "actionType": "联合条件",
+            "type": "或者",
+            "conditions": [
+              {
+                "actionType": "条件",
+                "type": "请选择类型",
+                "name": "",
+                "conditions": [
+                  {
+                    "id": 956,
+                    "tableId": 70,
+                    "name": "金额",
+                    "jsonpath": "$.HEAD.Detailed[~].AmountOfMoney",
+                    "isTrans": 0,
+                    "type": "Double",
+                    "defaultValue": null,
+                    "remark": "无",
+                    "isSpecial": 0,
+                    "parameter": null,
+                    "inUse": 1,
+                    "createTime": "2021-01-07 10:54:35",
+                    "updateTime": "2021-01-07 17:01:27",
+                    "tableName": "电算化信息(Detailed)",
+                    "tableFieldId": 956
+                  },
+                  {
+                    "id": 34,
+                    "name": "在集合",
+                    "alias": null,
+                    "type": null,
+                    "components": "typeDefaultComp",
+                    "pid": 27,
+                    "enabled": true,
+                    "sort": 8,
+                    "createTime": "2020-07-02 17:26:15",
+                    "updateTime": "2020-08-12 23:11:07",
+                    "children": []
+                  },
+                  {
+                    "name": "List集合",
+                    "conditions": [
+                      {
+                        "variable": {
+                          "id": 963,
+                          "tableId": 71,
+                          "name": "增值税发票价税合计(List)",
+                          "jsonpath": "$.IMAGES.INVOICE_G.amountTax",
+                          "isTrans": 0,
+                          "type": "List",
+                          "defaultValue": null,
+                          "remark": "无",
+                          "isSpecial": 1,
+                          "parameter": null,
+                          "inUse": 1,
+                          "createTime": "2021-01-07 11:18:48",
+                          "updateTime": "2021-01-07 17:14:48",
+                          "tableName": "发票(INVOICE_G)",
+                          "tableFieldId": 963
+                        },
+                        "rule": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "signFactor": [
+          {
+            "type": "and",
+            "rule": "QT8828408928",
+            "value": "false"
+          },
+          {
+            "type": "and",
+            "rule": "LQ5391100803",
+            "value": "false"
+          }
+        ],
+        "stopFactor": [],
+        "result": [
+          {
+            "type": "通过",
+            "resultType": "变量报错",
+            "voluation": [],
+            "desc": ""
+          }
+        ],
+        "custom": {
+          "collapse": false
+        }
+      },
+      {
+        "isList": false,
+        "type": 0,
+        "title": "交易日期或交易金额确定消费明细单",
+        "sign": "ZN6016295131",
+        "remarks": "",
+        "unites": [
+          {
+            "actionType": "联合条件",
+            "type": "或者",
+            "conditions": [
+              {
+                "actionType": "条件",
+                "type": "请选择类型",
+                "name": "",
+                "conditions": [
+                  {
+                    "id": 954,
+                    "tableId": 70,
+                    "name": "交易日期",
+                    "jsonpath": "$.HEAD.Detailed[~].Date",
+                    "isTrans": 0,
+                    "type": "Date",
+                    "defaultValue": null,
+                    "remark": "无",
+                    "isSpecial": 0,
+                    "parameter": null,
+                    "inUse": 1,
+                    "createTime": "2021-01-07 10:53:45",
+                    "updateTime": "2021-01-07 17:01:27",
+                    "tableName": "电算化信息(Detailed)",
+                    "tableFieldId": 954
+                  },
+                  {
+                    "id": 34,
+                    "name": "在集合",
+                    "alias": null,
+                    "type": null,
+                    "components": "typeDefaultComp",
+                    "pid": 27,
+                    "enabled": true,
+                    "sort": 8,
+                    "createTime": "2020-07-02 17:26:15",
+                    "updateTime": "2020-08-12 23:11:07",
+                    "children": []
+                  },
+                  {
+                    "name": "List集合",
+                    "conditions": [
+                      {
+                        "variable": {
+                          "id": 967,
+                          "tableId": 72,
+                          "name": "离店日期(住宿)(List)",
+                          "jsonpath": "$.IMAGES.DETAIL.leaveDate",
+                          "isTrans": 0,
+                          "type": "List",
+                          "defaultValue": null,
+                          "remark": "无",
+                          "isSpecial": 1,
+                          "parameter": null,
+                          "inUse": 1,
+                          "createTime": "2021-01-07 13:54:32",
+                          "updateTime": "2021-01-07 17:21:45",
+                          "tableName": "消费明细单(DETAIL)",
+                          "tableFieldId": 967
+                        },
+                        "rule": {}
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "actionType": "条件",
+                "type": "请选择类型",
+                "name": "",
+                "conditions": [
+                  {
+                    "id": 956,
+                    "tableId": 70,
+                    "name": "金额",
+                    "jsonpath": "$.HEAD.Detailed[~].AmountOfMoney",
+                    "isTrans": 0,
+                    "type": "Double",
+                    "defaultValue": null,
+                    "remark": "无",
+                    "isSpecial": 0,
+                    "parameter": null,
+                    "inUse": 1,
+                    "createTime": "2021-01-07 10:54:35",
+                    "updateTime": "2021-01-07 17:01:27",
+                    "tableName": "电算化信息(Detailed)",
+                    "tableFieldId": 956
+                  },
+                  {
+                    "id": 34,
+                    "name": "在集合",
+                    "alias": null,
+                    "type": null,
+                    "components": "typeDefaultComp",
+                    "pid": 27,
+                    "enabled": true,
+                    "sort": 8,
+                    "createTime": "2020-07-02 17:26:15",
+                    "updateTime": "2020-08-12 23:11:07",
+                    "children": []
+                  },
+                  {
+                    "name": "List集合",
+                    "conditions": [
+                      {
+                        "variable": {
+                          "id": 968,
+                          "tableId": 72,
+                          "name": "消费明细单合计金额(List)",
+                          "jsonpath": "$.IMAGES.DETAIL.amount",
+                          "isTrans": 0,
+                          "type": "List",
+                          "defaultValue": null,
+                          "remark": "无",
+                          "isSpecial": 0,
+                          "parameter": null,
+                          "inUse": 1,
+                          "createTime": "2021-01-07 13:57:05",
+                          "updateTime": "2021-01-07 17:21:49",
+                          "tableName": "消费明细单(DETAIL)",
+                          "tableFieldId": 968
+                        },
+                        "rule": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "signFactor": [],
+        "stopFactor": [],
+        "result": [
+          {
+            "type": "通过",
+            "resultType": "变量报错",
+            "voluation": [],
+            "desc": "交易日期或交易金额有误"
+          }
+        ],
+        "custom": {
+          "collapse": false
+        }
+      },
+      {
+        "isList": false,
+        "type": 0,
+        "title": "确定支付凭证前置条件",
+        "sign": "WJ5078394257",
+        "remarks": "",
+        "unites": [
+          {
+            "actionType": "联合条件",
+            "type": "或者",
+            "conditions": [
+              {
+                "actionType": "条件",
+                "type": "请选择类型",
+                "name": "",
+                "conditions": [
+                  {
+                    "id": 956,
+                    "tableId": 70,
+                    "name": "金额",
+                    "jsonpath": "$.HEAD.Detailed[~].AmountOfMoney",
+                    "isTrans": 0,
+                    "type": "Double",
+                    "defaultValue": null,
+                    "remark": "无",
+                    "isSpecial": 0,
+                    "parameter": null,
+                    "inUse": 1,
+                    "createTime": "2021-01-07 10:54:35",
+                    "updateTime": "2021-01-07 17:20:34",
+                    "tableName": "电算化信息(Detailed)",
+                    "tableFieldId": 956
+                  },
+                  {
+                    "id": 29,
+                    "name": "大于",
+                    "alias": null,
+                    "type": null,
+                    "components": "typeDefaultComp",
+                    "pid": 27,
+                    "enabled": true,
+                    "sort": 13,
+                    "createTime": "2020-07-02 17:26:15",
+                    "updateTime": "2020-08-12 23:11:45",
+                    "children": []
+                  },
+                  {
+                    "name": "值",
+                    "type": "数字",
+                    "value": "",
+                    "number": 300
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "signFactor": [],
+        "stopFactor": [],
+        "result": [],
+        "custom": {
+          "collapse": false
+        }
+      },
+      {
+        "isList": false,
+        "type": 0,
+        "title": "交易日期或交易金额确定支付凭证",
+        "sign": "TJ2876352012",
+        "remarks": "",
+        "unites": [
+          {
+            "actionType": "联合条件",
+            "type": "或者",
+            "conditions": [
+              {
+                "actionType": "条件",
+                "type": "请选择类型",
+                "name": "",
+                "conditions": [
+                  {
+                    "id": 954,
+                    "tableId": 70,
+                    "name": "交易日期",
+                    "jsonpath": "$.HEAD.Detailed[~].Date",
+                    "isTrans": 0,
+                    "type": "Date",
+                    "defaultValue": null,
+                    "remark": "无",
+                    "isSpecial": 0,
+                    "parameter": null,
+                    "inUse": 1,
+                    "createTime": "2021-01-07 10:53:45",
+                    "updateTime": "2021-01-07 17:01:27",
+                    "tableName": "电算化信息(Detailed)",
+                    "tableFieldId": 954
+                  },
+                  {
+                    "id": 34,
+                    "name": "在集合",
+                    "alias": null,
+                    "type": null,
+                    "components": "typeDefaultComp",
+                    "pid": 27,
+                    "enabled": true,
+                    "sort": 8,
+                    "createTime": "2020-07-02 17:26:15",
+                    "updateTime": "2020-08-12 23:11:07",
+                    "children": []
+                  },
+                  {
+                    "name": "List集合",
+                    "conditions": [
+                      {
+                        "variable": {
+                          "id": 969,
+                          "tableId": 73,
+                          "name": "支付凭证日期(List)",
+                          "jsonpath": "$.IMAGES.POS.posDate",
+                          "isTrans": 0,
+                          "type": "List",
+                          "defaultValue": null,
+                          "remark": "无",
+                          "isSpecial": 1,
+                          "parameter": null,
+                          "inUse": 1,
+                          "createTime": "2021-01-07 13:58:14",
+                          "updateTime": "2021-01-07 17:21:54",
+                          "tableName": "支付凭证(POS)",
+                          "tableFieldId": 969
+                        },
+                        "rule": {}
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "actionType": "条件",
+                "type": "请选择类型",
+                "name": "",
+                "conditions": [
+                  {
+                    "id": 956,
+                    "tableId": 70,
+                    "name": "金额",
+                    "jsonpath": "$.HEAD.Detailed[~].AmountOfMoney",
+                    "isTrans": 0,
+                    "type": "Double",
+                    "defaultValue": null,
+                    "remark": "无",
+                    "isSpecial": 0,
+                    "parameter": null,
+                    "inUse": 1,
+                    "createTime": "2021-01-07 10:54:35",
+                    "updateTime": "2021-01-07 17:01:27",
+                    "tableName": "电算化信息(Detailed)",
+                    "tableFieldId": 956
+                  },
+                  {
+                    "id": 34,
+                    "name": "在集合",
+                    "alias": null,
+                    "type": null,
+                    "components": "typeDefaultComp",
+                    "pid": 27,
+                    "enabled": true,
+                    "sort": 8,
+                    "createTime": "2020-07-02 17:26:15",
+                    "updateTime": "2020-08-12 23:11:07",
+                    "children": []
+                  },
+                  {
+                    "name": "List集合",
+                    "conditions": [
+                      {
+                        "variable": {
+                          "id": 970,
+                          "tableId": 73,
+                          "name": "支付凭证消费合计(List)",
+                          "jsonpath": "$.IMAGES.POS.feeAmount",
+                          "isTrans": 0,
+                          "type": "List",
+                          "defaultValue": null,
+                          "remark": "无",
+                          "isSpecial": 1,
+                          "parameter": null,
+                          "inUse": 1,
+                          "createTime": "2021-01-07 13:59:25",
+                          "updateTime": "2021-01-07 17:21:58",
+                          "tableName": "支付凭证(POS)",
+                          "tableFieldId": 970
+                        },
+                        "rule": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "signFactor": [
+          {
+            "type": "or",
+            "rule": "WJ5078394257",
+            "value": "true"
+          }
+        ],
+        "stopFactor": [],
+        "result": [
+          {
+            "type": "通过",
+            "resultType": "变量报错",
+            "voluation": [],
+            "desc": "交易日期或交易金额有误"
+          }
+        ],
+        "custom": {
+          "collapse": false
+        }
+      }
+    ]
+  }
+]

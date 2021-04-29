@@ -63,8 +63,11 @@
               >
                 <Icon custom="iconfont icon-post" size="18" style="margin-right:3px" />版本审核
               </Button>
-              <Button size="small" type="success" @click="openTestModel = true;currentId = vo.id">
+              <Button size="small" type="success" @click="openTestModel = true;currentId = vo.id" style="margin-right:10px">
                 <Icon custom="iconfont icon-light" size="18" style="margin-right:3px" />业务测试
+              </Button>
+              <Button size="small" type="success" @click="openSettingModel = true;currentId = vo.id">
+                <Icon custom="iconfont icon-repair" size="18" style="margin-right:3px" />项目设置
               </Button>
             </div>
             <div style>
@@ -101,6 +104,7 @@
     />
 
     <testModel v-if="openTestModel" :projectId="currentId" :open="openTestModel" />
+    <settingModel v-if="openSettingModel" :projectId="currentId" :open="openSettingModel" />
   </div>
 </template>
 
@@ -110,10 +114,11 @@ import editModel from "@/views/project-list-edit.vue";
 import peopleModel from "@/views/project-list-people.vue";
 import publishModel from "@/views/project-list-publish.vue";
 import testModel from "@/views/test-project.vue";
+import settingModel from "@/views/project-list-setting.vue";
 import { GetHeight } from "@/mixins/mixins";
 
 export default {
-  components: { addModel, editModel, peopleModel, publishModel, testModel },
+  components: { addModel, editModel, peopleModel, publishModel, testModel, settingModel },
   mixins: [GetHeight],
   data() {
     return {
@@ -122,6 +127,7 @@ export default {
       openPeopleModel: false,
       openPublishModel: false,
       openTestModel: false,
+      openSettingModel: false,
       tableLoading: false,
       publishType: 1,
       editData: {},
