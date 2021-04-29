@@ -2,32 +2,53 @@
   <div v-cloak>
     <div class="top-tools" ref="topTools" flex="cross:center">
       <Button
-        @click="$router.push({name:'project-version-scene',query:{versionId:$route.query.versionId,projectId:$route.query.projectId}})"
+        @click="
+          $router.push({
+            name: 'project-version-scene',
+            query: {
+              versionId: $route.query.versionId,
+              projectId: $route.query.projectId,
+            },
+          })
+        "
         size="small"
         type="default"
         icon="ios-arrow-back"
-        style="margin-right:10px"
-      >返回</Button>
+        style="margin-right: 10px"
+        >返回</Button
+      >
       <Button
         icon="ios-paper-plane"
         size="small"
         type="info"
         @click="allTest"
-        style="margin-right:10px"
-      >测试</Button>
+        style="margin-right: 10px"
+        >测试</Button
+      >
       <Button
         icon="ios-folder-open"
         size="small"
         type="warning"
-        @click="openAddModel=true"
-        style="margin-right:10px"
-      >保存为新版本</Button>
-      <Button icon="md-done-all" size="small" type="primary" @click="save">保存</Button>
+        @click="openAddModel = true"
+        style="margin-right: 10px"
+        >保存为新版本</Button
+      >
+      <Button icon="md-done-all" size="small" type="primary" @click="save"
+        >保存</Button
+      >
     </div>
 
     <div
       flex
-      style="position: absolute;left:20px;top:40px;right:37px;background-color:#fff;height:60px;z-index:1000"
+      style="
+        position: absolute;
+        left: 20px;
+        top: 40px;
+        right: 37px;
+        background-color: #fff;
+        height: 60px;
+        z-index: 1000;
+      "
     >
       <div flex-box="1" flex="cross:center">
         <Button
@@ -35,15 +56,17 @@
           size="small"
           type="success"
           @click="addItem"
-          style="margin-right:10px"
-        >添加规则</Button>
+          style="margin-right: 10px"
+          >添加规则</Button
+        >
         <Button
           icon="md-book"
           size="small"
           type="success"
           @click="addYeModel = true"
-          style="margin-right:10px"
-        >添加分类</Button>
+          style="margin-right: 10px"
+          >添加分类</Button
+        >
         <span v-if="allData.length" flex="cross:center">
           选择页：
           <Select
@@ -52,19 +75,21 @@
             @on-change="changeYe"
             size="small"
             v-model="currentYe"
-            style="width:350px;margin-right:10px"
+            style="width: 350px; margin-right: 10px"
           >
             <Option
-              v-for="(item,index) in allData"
+              v-for="(item, index) in allData"
               :value="item.id"
               :label="item.name"
               :key="item.name"
             >
-              <div style="width:300px" flex>
+              <div style="width: 300px" flex>
                 <span flex-box="1">{{ item.name }}</span>
-                <span flex-box="0" style="color:#ff9900;font-size:12px">
+                <span flex-box="0" style="color: #ff9900; font-size: 12px">
                   <span @click.stop="openEditYe(index)">编辑</span>
-                  <span @click.stop="delYe(index)" style="margin-left:10px">删除</span>
+                  <span @click.stop="delYe(index)" style="margin-left: 10px"
+                    >删除</span
+                  >
                 </span>
               </div>
             </Option>
@@ -72,21 +97,32 @@
         </span>
       </div>
       <div flex-box="0" flex="cross:center">
-        <Button icon="md-code" size="small" type="success" @click="textareaModal=true">code</Button>
+        <Button
+          icon="md-code"
+          size="small"
+          type="success"
+          @click="textareaModal = true"
+          >code</Button
+        >
       </div>
     </div>
 
     <div :style="`height:${divHeight}px`" class="wrap-div">
-      <div style="padding:20px">
-        <div style="height:40px"></div>
+      <div style="padding: 20px">
+        <div style="height: 40px"></div>
 
         <div v-show="tableLoading">数据加载中...</div>
 
-        <div v-show="!items.length&&!tableLoading">暂时没有数据</div>
+        <div v-show="!items.length && !tableLoading">暂时没有数据</div>
 
         <div
           v-show="items.length"
-          style="background-color:#eee;margin-right:0px;padding:7px;border-radius: 5px;"
+          style="
+            background-color: #eee;
+            margin-right: 0px;
+            padding: 7px;
+            border-radius: 5px;
+          "
         >
           <vuedraggable
             :list="items"
@@ -95,8 +131,13 @@
             handle=".drag-handle"
           >
             <transition-group>
-              <div class="item" v-for="(vo,index) in items" :key="vo.sign" :id="`${vo.sign}`">
-                <Card shadow :padding="0" style="width:100%" dis-hover>
+              <div
+                class="item"
+                v-for="(vo, index) in items"
+                :key="vo.sign"
+                :id="`${vo.sign}`"
+              >
+                <Card shadow :padding="0" style="width: 100%" dis-hover>
                   <div slot="title" flex="cross:center">
                     <span class="drag-handle">
                       <Icon
@@ -104,23 +145,28 @@
                         size="16"
                         color="#333"
                         type="ios-menu"
-                        style="margin:0 5px"
+                        style="margin: 0 5px"
                       />
                     </span>
                     <Icon
                       class="cursor"
                       size="16"
                       color="#333"
-                      :custom="vo.custom.collapse?'iconfont icon-fold':'iconfont icon-unfold'"
-                      style="margin:0 5px"
+                      :custom="
+                        vo.custom.collapse
+                          ? 'iconfont icon-fold'
+                          : 'iconfont icon-unfold'
+                      "
+                      style="margin: 0 5px"
                       @click="openCollapse(index)"
                     />
-                    <b class="cursor" @click="openCollapse(index)">
-                      {{vo.title}}（{{vo.sign}}）
+                    <b :class="[vo.isprefix ? 'text-yellow indent-left' : '','cursor']" @click="openCollapse(index)">
+                      {{ vo.title }}（{{ vo.sign }}）
                       <span
                         v-if="vo.isList"
-                        style="color:red;font-weight:300"
-                      >List专用</span>
+                        style="color: red; font-weight: 300"
+                        >List专用</span
+                      >
                     </b>
                   </div>
                   <a slot="extra" href="javascript:;" title="测试">
@@ -129,7 +175,7 @@
                       size="20"
                       color="#2d8cf0"
                       type="ios-paper-plane-outline"
-                      style="margin:0 8px"
+                      style="margin: 0 8px"
                       @click="oneTest(index)"
                     />
                   </a>
@@ -139,7 +185,7 @@
                       size="22"
                       color="#808695"
                       custom="iconfont icon-jiqixuexi-"
-                      style="margin:0 8px"
+                      style="margin: 0 8px"
                       @click="addSign(index)"
                     />
                   </a>
@@ -149,7 +195,7 @@
                       size="19"
                       color="#78a355"
                       custom="iconfont icon-safe"
-                      style="margin:0 8px"
+                      style="margin: 0 8px"
                       @click="addResult(index)"
                     />
                   </a>
@@ -159,7 +205,7 @@
                       size="20"
                       color="#7f9df3"
                       custom="iconfont icon-radiobox"
-                      style="margin:0 8px"
+                      style="margin: 0 8px"
                       @click="addStop(index)"
                     />
                   </a>
@@ -171,26 +217,34 @@
                       size="17"
                       color="#e0861a"
                       custom="iconfont icon-delete"
-                      style="margin:0 8px"
+                      style="margin: 0 8px"
                       @click="delItem(index)"
                     />
                   </a>
 
                   <div v-if="vo.custom.collapse" class="content">
                     <div class="item-item" flex="cross:center">
-                      <div style="width:75px;border-right:#eee 0.5px solid;margin-right:10px">标题：</div>
+                      <div
+                        style="
+                          width: 75px;
+                          border-right: #eee 0.5px solid;
+                          margin-right: 10px;
+                        "
+                      >
+                        标题：
+                      </div>
                       <div flex="cross:center">
                         <Input
                           v-model="vo.title"
                           size="small"
                           type="text"
                           placeholder="输入标题..."
-                          style="width:300px;margin-right:15px"
+                          style="width: 300px; margin-right: 15px"
                         />循环：
                         <Select
                           size="small"
                           v-model="vo.type"
-                          style="width:160px;margin-right:10px"
+                          style="width: 160px; margin-right: 10px"
                         >
                           <Option :value="0">默认</Option>
                           <Option :value="1">循环时存在为ture</Option>
@@ -199,20 +253,21 @@
 
                         <!-- <Checkbox v-model="vo.isLoop">循环时存在为ture</Checkbox> -->
 
-                          <!-- todo: v-model="vo.warningLevel" -->
+                        <!-- todo: v-model="vo.warningLevel" -->
                         <Select
                           size="small"
                           v-model="vo.warningLevel"
-                          style="width:160px;margin-right:10px"
+                          style="width: 160px; margin-right: 10px"
                           placeholder="选择预警等级"
                         >
                           <Option :value="1">一</Option>
                         </Select>
                         <Checkbox
-                          @on-change="$store.commit('ruleData',allData)"
+                          @on-change="$store.commit('ruleData', allData)"
                           v-model="vo.isList"
-                          style="margin-left:10px"
-                        >list专用</Checkbox>
+                          style="margin-left: 10px"
+                          >list专用</Checkbox
+                        >
 
                         <!-- <RadioGroup v-model="vo.type" style="margin-left:10px">
                             <Radio :label="1">循环时存在为ture</Radio>
@@ -222,60 +277,108 @@
                     </div>
 
                     <div class="item-item" flex v-if="vo.signFactor.length">
-                      <div style="width:75px;border-right:#eee 0.5px solid;margin-right:10px">标记条件：</div>
+                      <div
+                        style="
+                          width: 75px;
+                          border-right: #eee 0.5px solid;
+                          margin-right: 10px;
+                        "
+                      >
+                        标记条件：
+                      </div>
                       <div>
-                        <signFactor :items="vo.signFactor" :sign="vo.sign" :ruleList="allData" />
+                        <signFactor
+                          :items="vo.signFactor"
+                          :sign="vo.sign"
+                          :ruleList="allData"
+                        />
                       </div>
                     </div>
 
                     <div class="item-item" flex>
-                      <div style="width:75px;border-right:#eee 0.5px solid;margin-right:10px">联合条件：</div>
+                      <div
+                        style="
+                          width: 75px;
+                          border-right: #eee 0.5px solid;
+                          margin-right: 10px;
+                        "
+                      >
+                        联合条件：
+                      </div>
                       <div>
                         <lazy-render :immediately="true">
                           <Unites :items="vo.unites" />
                           <div slot="tip">
-                            <Icon type="ios-loading" size="16" class="spin-icon-load" />Loading...
+                            <Icon
+                              type="ios-loading"
+                              size="16"
+                              class="spin-icon-load"
+                            />Loading...
                           </div>
                         </lazy-render>
                       </div>
                     </div>
 
                     <div class="item-item" flex v-if="vo.result.length">
-                      <div style="width:75px;border-right:#eee 0.5px solid;margin-right:10px">结果：</div>
+                      <div
+                        style="
+                          width: 75px;
+                          border-right: #eee 0.5px solid;
+                          margin-right: 10px;
+                        "
+                      >
+                        结果：
+                      </div>
                       <div>
                         <Result :items="vo.result" />
                       </div>
                     </div>
 
                     <div class="item-item" flex v-if="vo.stopFactor.length">
-                      <div style="width:75px;border-right:#eee 0.5px solid;margin-right:10px">终止条件：</div>
+                      <div
+                        style="
+                          width: 75px;
+                          border-right: #eee 0.5px solid;
+                          margin-right: 10px;
+                        "
+                      >
+                        终止条件：
+                      </div>
                       <div>
                         <stopFactor :items="vo.stopFactor" />
                       </div>
                     </div>
 
                     <div class="item-item" flex="cross:center">
-                      <div style="width:75px;border-right:#eee 0.5px solid;margin-right:10px">备注：</div>
+                      <div
+                        style="
+                          width: 75px;
+                          border-right: #eee 0.5px solid;
+                          margin-right: 10px;
+                        "
+                      >
+                        备注：
+                      </div>
                       <div>
                         <Input
                           v-model="vo.remarks"
                           size="small"
                           type="text"
                           placeholder="输入备注..."
-                          style="width:400px"
+                          style="width: 400px"
                         />
                       </div>
                     </div>
                   </div>
 
-                  <div v-show="!vo.custom.collapse" style="padding:7px"></div>
+                  <div v-show="!vo.custom.collapse" style="padding: 7px"></div>
                 </Card>
               </div>
             </transition-group>
           </vuedraggable>
         </div>
 
-        <div style="height:30px"></div>
+        <div style="height: 30px"></div>
       </div>
     </div>
 
@@ -359,9 +462,13 @@ export default {
               _this.id = res.data.data.id;
               var tempData = JSON.parse(res.data.data.ruleFormat);
               // _this.allData = tempData;
-              _this.allData = tempData.map(di => {
-                const newItems = di.items.map(rule => ({warningLevel: 0, ...rule}));
-                return ({ ...di, "items": newItems });
+              _this.allData = tempData.map((di) => {
+                const newItems = di.items.map((rule) => ({
+                  ...rule,
+                  warningLevel: 0,
+                  isprefix: /(\u524d\u7f6e|前置)/gi.test(rule.title),
+                }));
+                return { ...di, items: newItems };
               });
               _this.$store.commit("ruleData", _this.allData);
               _this.init();
@@ -650,4 +757,6 @@ export default {
 .spin-icon-load {
   animation: ani-demo-spin 1s linear infinite;
 }
+.text-yellow{ color: #FFC000;}
+.indent-left{margin-left: 2rem;}
 </style>
