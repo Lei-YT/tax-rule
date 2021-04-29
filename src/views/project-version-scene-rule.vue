@@ -199,6 +199,15 @@
 
                         <!-- <Checkbox v-model="vo.isLoop">循环时存在为ture</Checkbox> -->
 
+                          <!-- todo: v-model="vo.warningLevel" -->
+                        <Select
+                          size="small"
+                          v-model="vo.warningLevel"
+                          style="width:160px;margin-right:10px"
+                          placeholder="选择预警等级"
+                        >
+                          <Option :value="1">一</Option>
+                        </Select>
                         <Checkbox
                           @on-change="$store.commit('ruleData',allData)"
                           v-model="vo.isList"
@@ -348,7 +357,12 @@ export default {
           if (res) {
             if (res.data.data) {
               _this.id = res.data.data.id;
-              _this.allData = JSON.parse(res.data.data.ruleFormat);
+              var tempData = JSON.parse(res.data.data.ruleFormat);
+              // _this.allData = tempData;
+              _this.allData = tempData.map(di => {
+                const newItems = di.items.map(rule => ({warningLevel: 0, ...rule}));
+                return ({ ...di, "items": newItems });
+              });
               _this.$store.commit("ruleData", _this.allData);
               _this.init();
             }
