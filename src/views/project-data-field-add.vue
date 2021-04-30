@@ -60,6 +60,18 @@
               <Input v-model="formData.defaultValue" placeholder="请输入..." type="text" />
             </p>
           </div>
+          <div class="form-item" flex>
+            <p class="form-item-title">
+              是否特殊
+              <span style="color:red;">✲</span>
+            </p>
+            <p style="margin-left:30px">
+              <RadioGroup v-model="formData.isSpecial">
+                <Radio :label="1">是</Radio>
+                <Radio :label="0">否</Radio>
+              </RadioGroup>
+            </p>
+          </div>
           <div class="form-item">
             <p class="form-item-title">备注</p>
             <p>
@@ -96,6 +108,18 @@
             </p>
             <p>
               <Input v-model="formData.jsonpath" placeholder="请输入..." type="text" />
+            </p>
+          </div>
+          <div class="form-item" flex>
+            <p class="form-item-title">
+              是否特殊
+              <span style="color:red;">✲</span>
+            </p>
+            <p style="margin-left:30px">
+              <RadioGroup v-model="formData.isSpecial">
+                <Radio :label="1">是</Radio>
+                <Radio :label="0">否</Radio>
+              </RadioGroup>
             </p>
           </div>
 
@@ -181,6 +205,18 @@
             </p>
             <p>
               <Input v-model="formData.parameter" placeholder="请输入..." type="text" />
+            </p>
+          </div>
+          <div class="form-item" flex>
+            <p class="form-item-title">
+              是否特殊
+              <span style="color:red;">✲</span>
+            </p>
+            <p style="margin-left:30px">
+              <RadioGroup v-model="formData.isSpecial">
+                <Radio :label="1">是</Radio>
+                <Radio :label="0">否</Radio>
+              </RadioGroup>
             </p>
           </div>
 

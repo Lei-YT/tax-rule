@@ -233,6 +233,11 @@ export default {
           minWidth: 150,
         },
         {
+          title: "是否特殊",
+          slot: "isSpecial",
+          minWidth: 90,
+        },
+        {
           title: "备注",
           key: "remark",
           minWidth: 100,
@@ -261,6 +266,11 @@ export default {
           title: "jsonpath",
           key: "jsonpath",
           minWidth: 150,
+        },
+        {
+          title: "是否特殊",
+          slot: "isSpecial",
+          minWidth: 90,
         },
         {
           title: "备注",
@@ -321,6 +331,11 @@ export default {
           key: "type",
           sortable: true,
           minWidth: 100,
+        },
+        {
+          title: "是否特殊",
+          slot: "isSpecial",
+          minWidth: 90,
         },
         {
           title: "备注",
