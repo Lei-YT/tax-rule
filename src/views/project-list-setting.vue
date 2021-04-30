@@ -7,7 +7,7 @@
       @on-cancel="cancel"
     >
       <p slot="header">
-        <b>设置</b>
+        <b>预警设置</b>
       </p>
 
       <div>
@@ -18,13 +18,13 @@
           :data="warningData"
           :height="400"
         >
-          <template slot-scope="{ row, index }" slot="level">
+          <template slot-scope="{ row, index }" slot="grade">
             <Input
               type="text"
-              v-model="editObject.level"
+              v-model="editObject.grade"
               v-if="editIndex === index"
             />
-            <span v-else>{{ row.level }}</span>
+            <span v-else>{{ row.grade }}</span>
           </template>
           <template slot-scope="{ row, index }" slot="weight">
             <Input
@@ -40,13 +40,15 @@
               size="small"
               v-model="editObject.enabled"
             >
-              <Option :value="1">启用</Option>
-              <Option :value="0">停用</Option>
+              <Option :value="true">启用</Option>
+              <Option :value="false">停用</Option>
             </Select>
             <span v-else>{{ row.enabled == 0 ? "停用" : "启用" }}</span>
           </template>
           <template slot="color" slot-scope="{ row, index }">
-            <ColorPicker transfer recommend
+            <ColorPicker
+              transfer
+              recommend
               v-model="editObject.color"
               v-if="editIndex === index"
             />
@@ -68,27 +70,32 @@
                 style="margin-right: 3px; color: #3399ff"
                 >保存</Button
               >
-              <Button size="small" @click="handleRowCancel(index)" style=""
-                >取消</Button
-              >
+              <Button size="small" @click="handleRowCancel(index)">取消</Button>
             </div>
             <div v-else>
               <Button
                 size="small"
                 @click="handleEdit(row, index)"
-                style="color: #3399ff"
+                style="margin-right: 3px; color: #3399ff"
                 >编辑</Button
+              >
+              <Button
+                size="small"
+                @click="del(row, index)"
+                style="margin-right: 3px; color: #f00"
+                >删除</Button
               >
             </div>
           </template>
-          <div slot="footer" class="table-footer" >
-              <Button
-                size="small"
-                type="dashed"
-                @click="handleAddRow"
-                style="color: #3399ff"
-                >添加一行</Button
-              ></div>
+          <div slot="footer" class="table-footer">
+            <Button
+              size="small"
+              type="dashed"
+              @click="handleAddRow"
+              style="color: #3399ff"
+              >添加一行</Button
+            >
+          </div>
         </Table>
       </div>
 
@@ -128,7 +135,7 @@ export default {
         },
         {
           title: "预警等级",
-          slot: "level",
+          slot: "grade",
           minWidth: 30,
         },
         {
@@ -152,83 +159,122 @@ export default {
           minWidth: 60,
         },
       ],
-      warningData: [
-        { id: 1, level: 1, weight: 1, enabled: 0, color: "#000" },
-        { id: 3, level: 2, weight: 1, enabled: 0, color: "#000" },
-      ],
+      warningData: [],
       editIndex: -1,
       editObject: {},
-      rowAction: 'edit',
-      initRow: { level: "", weight: "", enabled: 0, color: "#f00" },
+      rowAction: "edit",
+      initRow: { grade: "", weight: "", enabled: 0, color: "#f00" },
     };
   },
   computed: {},
   mounted() {
     var _this = this;
     _this.isShow = _this.open;
+    _this.getWarning();
   },
   methods: {
     handleEdit(row, index) {
-      this.editObject.level = row.level;
-      this.editObject.weight = row.weight;
-      this.editObject.enabled = row.enabled;
-      this.editObject.color = row.color;
-      this.editIndex = index;
+      const _this = this;
+      _this.editObject = Object.assign({}, row);
+      _this.editIndex = (index);
     },
     handleSave(index) {
-      this.warningData[index].level = this.editObject.level;
+      this.warningData[index].grade = this.editObject.grade;
       this.warningData[index].weight = this.editObject.weight;
       this.warningData[index].enabled = this.editObject.enabled;
       this.warningData[index].color = this.editObject.color;
+      console.log(this.rowAction)
+      if (this.rowAction == 'add') {
+        this.addSave(index);
+      } else {
+        this.editSave(index);
+      }
       this.editIndex = -1;
-      this.rowAction = '';
+      this.rowAction = "";
       this.editObject = {};
     },
     handleRowCancel(index) {
-      if (this.rowAction=='add') {
+      if (this.rowAction == "add") {
         this.warningData.splice(index, 1);
       }
       this.editIndex = -1;
-      this.rowAction = '';
+      this.rowAction = "";
       this.editObject = {};
     },
     handleAddRow() {
-      if (this.rowAction=='add') {
+      if (this.rowAction == "add") {
         this._N("请先保存");
         return false;
       }
       this.editObject = {};
-      this.warningData.push({level: "", weight: "", enabled: 0, color: "#f00"});
+      this.warningData.push({
+        grade: "",
+        weight: "",
+        enabled: 0,
+        color: "#f00",
+      });
       const len = this.warningData.length;
-      this.editIndex = len-1;
-      this.warningData[len-1].level = '';
-      this.warningData[len-1].weight = '';
-      this.warningData[len-1].enabled = 0;
-      this.warningData[len-1].color = "#f00";
-      this.handleEdit(this.warningData[len-1], this.editIndex);
-      this.rowAction = 'add';
+      this.editIndex = len - 1;
+      this.warningData[len - 1].grade = "";
+      this.warningData[len - 1].weight = "";
+      this.warningData[len - 1].enabled = 0;
+      this.warningData[len - 1].color = "#f00";
+      this.handleEdit(this.warningData[len - 1], this.editIndex);
+      this.rowAction = "add";
     },
-    save() {
-      var _this = this;
-
-      if (!_this.formData.versionNo) {
-        _this._N("请输入版本编码");
-        return false;
-      }
-
-      if (!_this.formData.versionName) {
-        _this._N("请输入版本名称");
-        return false;
-      }
-
-      _this.submitLoading = true;
-      _this.$http.post("/edition/insertEdition", _this.formData).then((res) => {
+    getWarning() {
+      const _this = this;
+      this.submitLoading = true;
+      this.$http.get(`warn/list/${this.projectId}`).then((res) => {
         if (res) {
-          _this.isShow = false;
-          _this.$parent.openSettingModel = false;
-          _this.$parent.getData();
+          _this.warningData = res.data.data;
+          _this.submitLoading = false;
+        }
+      });
+    },
+    addSave(index) {
+      var _this = this;
+      _this.submitLoading = true;
+      let formData = _this.warningData[index];
+      delete formData.createTime;
+      delete formData.modifyTime;
+      formData.projectId = _this.projectId;
+      formData.weight = Number(formData.weight);
+      _this.$http.post("/warn/append", formData).then((res) => {
+        if (res) {
+          _this.getWarning();
         } else {
           _this.submitLoading = false;
+        }
+      });
+    },
+    editSave(index) {
+      var _this = this;
+      _this.submitLoading = true;
+      let formData = _this.warningData[index];
+      delete formData.createTime;
+      delete formData.modifyTime;
+      formData.projectId = _this.projectId;
+      formData.weight = Number(formData.weight);
+      _this.$http.put("/warn/modify", formData).then((res) => {
+        if (res) {
+          _this.getWarning();
+        } else {
+          _this.submitLoading = false;
+        }
+      });
+    },
+    del(row, index){
+      var _this = this;
+      _this.$Modal.confirm({
+        title: "温馨提示",
+        content: "<p>你确定要删除吗</p>",
+        onOk: () => {
+          _this.$http.delete(`/warn/delete/${row.id}`).then(res => {
+            if (res) {
+              _this.warningData.splice(index, 1);
+            }
+          });
         }
       });
     },
@@ -250,7 +296,7 @@ export default {
   margin-bottom: 5px;
   overflow: hidden;
 }
-.table-footer{
+.table-footer {
   padding: 5px;
   text-align: right;
 }
