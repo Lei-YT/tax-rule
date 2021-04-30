@@ -160,7 +160,7 @@
                       style="margin: 0 5px"
                       @click="openCollapse(index)"
                     />
-                    <b :class="[vo.isprefix ? 'text-yellow indent-left' : '','cursor']" @click="openCollapse(index)">
+                    <b :class="[vo.custom.isprefix ? 'text-yellow indent-left' : '','cursor']" @click="openCollapse(index)">
                       {{ vo.title }}（{{ vo.sign }}）
                       <span
                         v-if="vo.isList"
@@ -253,14 +253,14 @@
 
                         <!-- <Checkbox v-model="vo.isLoop">循环时存在为ture</Checkbox> -->
 
-                        <!-- todo: v-model="vo.warningLevel" -->
                         <Select
                           size="small"
-                          v-model="vo.warningLevel"
+                          v-if="vo.result[0].resultType=='预警'"
+                          v-model="vo.warnId"
                           style="width: 160px; margin-right: 10px"
                           placeholder="选择预警等级"
                         >
-                          <Option :value="1">一</Option>
+                          <Option v-for="(vw) in warnData" :key="vw.id" :value="vw.id">{{vw.grade}}</Option>
                         </Select>
                         <Checkbox
                           @on-change="$store.commit('ruleData', allData)"
@@ -441,6 +441,7 @@ export default {
       testJson: [],
       id: null,
       tableLoading: false,
+      warnData: []
     };
   },
   computed: {},
@@ -449,6 +450,7 @@ export default {
     var _this = this;
     _this.getData();
     _this.getVarData();
+    _this.getWarnData();
   },
   methods: {
     getData() {
@@ -465,8 +467,8 @@ export default {
               _this.allData = tempData.map((di) => {
                 const newItems = di.items.map((rule) => ({
                   ...rule,
-                  warningLevel: 0,
-                  isprefix: /(\u524d\u7f6e|前置)/gi.test(rule.title),
+                  warnId: 0,
+                  custom: { ...rule.custom, isprefix: /(\u524d\u7f6e|前置)/gi.test(rule.title)},
                 }));
                 return { ...di, items: newItems };
               });
@@ -525,6 +527,15 @@ export default {
         .then(function (res) {
           _this.$store.commit("varData", res.data.data);
           _this.getFuncData(res.data.data);
+        });
+    },
+    getWarnData() {
+      var _this = this;
+      _this.$http
+        .get(`/warn/list/${_this.$route.query.projectId}`)
+        .then(function (res) {
+          _this.warnData = res.data.data;
+          // _this.$store.commit("warnData", res.data.data);
         });
     },
     changeYe(id) {
@@ -605,9 +616,11 @@ export default {
             result: [
               //结果
             ],
+            warnId: 0,
             custom: {
               //custom只是给前端做交互使用，后端可以不理会
               collapse: "true", //是否折叠
+              isprefix: false
             },
           });
 
