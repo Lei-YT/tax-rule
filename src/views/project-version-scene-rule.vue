@@ -466,8 +466,8 @@ export default {
               // _this.allData = tempData;
               _this.allData = tempData.map((di) => {
                 const newItems = di.items.map((rule) => ({
+                  warnId: null,
                   ...rule,
-                  // warnId: 0,
                   custom: { ...rule.custom, isprefix: /(\u524d\u7f6e|前置)/gi.test(rule.title)},
                 }));
                 return { ...di, items: newItems };

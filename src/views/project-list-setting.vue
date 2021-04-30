@@ -93,8 +93,9 @@
               type="dashed"
               @click="handleAddRow"
               style="color: #3399ff"
-              >添加一行</Button
             >
+              添加一行
+            </Button>
           </div>
         </Table>
       </div>
@@ -176,15 +177,15 @@ export default {
     handleEdit(row, index) {
       const _this = this;
       _this.editObject = Object.assign({}, row);
-      _this.editIndex = (index);
+      _this.editIndex = index;
     },
     handleSave(index) {
       this.warningData[index].grade = this.editObject.grade;
       this.warningData[index].weight = this.editObject.weight;
       this.warningData[index].enabled = this.editObject.enabled;
       this.warningData[index].color = this.editObject.color;
-      console.log(this.rowAction)
-      if (this.rowAction == 'add') {
+      console.log(this.rowAction);
+      if (this.rowAction == "add") {
         this.addSave(index);
       } else {
         this.editSave(index);
@@ -264,18 +265,18 @@ export default {
         }
       });
     },
-    del(row, index){
+    del(row, index) {
       var _this = this;
       _this.$Modal.confirm({
         title: "温馨提示",
         content: "<p>你确定要删除吗</p>",
         onOk: () => {
-          _this.$http.delete(`/warn/delete/${row.id}`).then(res => {
+          _this.$http.delete(`/warn/delete/${row.id}`).then((res) => {
             if (res) {
               _this.warningData.splice(index, 1);
             }
           });
-        }
+        },
       });
     },
     cancel() {
