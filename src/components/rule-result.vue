@@ -27,7 +27,7 @@
 
 
       <span
-       v-if="items[0].resultType=='变量报错'"
+       v-if="items.length>0&& items[0].resultType=='变量报错'"
         flex="main:center cross:center"
         style="margin-right:5px;width:100px; height:24px;background-color:#eee;border-radius: 3px;color:#777"
       >
@@ -62,7 +62,7 @@
 <div style="height:10px"></div>
 
 
-<template v-if="items[0].resultType=='变量报错'">
+<template v-if="items.length>0&& items[0].resultType=='变量报错'">
 <Tag closable @on-close="delVoluation(index)" color="default" type="border" v-for="(vo,index) in items[0]['voluation']" :key="index">{{vo.name}}</Tag>
 </template>
 

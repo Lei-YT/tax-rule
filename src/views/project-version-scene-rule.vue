@@ -255,7 +255,7 @@
 
                         <Select
                           size="small"
-                          v-if="vo.result[0].resultType=='预警'"
+                          v-if="vo.result.length>0&& vo.result[0].resultType=='预警'"
                           v-model="vo.warnId"
                           style="width: 160px; margin-right: 10px"
                           placeholder="选择预警等级"
