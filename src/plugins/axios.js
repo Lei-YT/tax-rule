@@ -14,7 +14,7 @@ import router from '../router'
 let config = {
   // baseURL: window.apiUrl,
   // baseURL: process.env.NODE_ENV == 'development' ? '/' : window.apiUrl,
-  baseURL:'/api',
+  baseURL:'http://192.168.5.146:9002',
   timeout: 60 * 1000 * 5, // Timeout
   // withCredentials: true, // Check cross-site Access-Control
 };
