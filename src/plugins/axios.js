@@ -14,6 +14,7 @@ import router from '../router'
 let config = {
   // baseURL: window.apiUrl,
   // baseURL: process.env.NODE_ENV == 'development' ? '/' : window.apiUrl,
+//   baseURL:'/api',
   baseURL:'http://192.168.5.146:9002',
   timeout: 60 * 1000 * 5, // Timeout
   // withCredentials: true, // Check cross-site Access-Control
@@ -43,7 +44,6 @@ _axios.interceptors.response.use(
     if (response.data.status == 200) {
       return response;
     } else if (response.data.status == 409 || response.data.status == 401 || response.data.status == 402) {
-
       Vue.prototype.$Notice.warning({
         title: '温馨提示',
         desc: response.data.message + '，请重新登陆！'
@@ -63,11 +63,13 @@ _axios.interceptors.response.use(
       if (response.data.message) {
         msgStr = `<p>${response.data.message}</p>`
       }
-      Vue.prototype.$Notice.warning({
-        title: '温馨提示',
-        desc: ` ${msgStr}${dataStr}`
-      });
-      return null
+      if (dataStr || msgStr) {
+          Vue.prototype.$Notice.warning({
+              title: '温馨提示',
+              desc: ` ${msgStr}${dataStr}`
+            });
+        }
+      return response;
     }
 
 

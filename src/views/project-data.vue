@@ -458,10 +458,6 @@ export default {
       this.openFieldAddModel = true;
     },
     showFieldImportModel() {
-      if (!this.tableData[this.tableIndex]) {
-        this._N("请先选择表");
-        return false;
-      }
       this.openFieldImportModel = true;
     },
     showTableModel() {

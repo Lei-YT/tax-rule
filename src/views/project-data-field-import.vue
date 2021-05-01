@@ -8,45 +8,50 @@
       @on-cancel="cancel"
     >
       <p slot="header">
-        <b>
-          导入字段
-          <span style="color: #999">（{{ tableType }}）</span>
-        </b>
+        <b> 导入表字段 </b>
       </p>
 
       <div>
-        <!-- <template v-if="tableType == '影像表'">
-          <div class="form-item">
-            <Input type="file" name="file_uploads" accept=".xls, .xlsx" multiple></Input>
-          </div>
-        </template> -->
         <template>
           <Upload
-            class=""
-            action="//jsonplaceholder.typicode.com/posts/"
+            ref="import"
+            with-credentials
+            :action="uploadAction"
+            :headers="uploadHeader"
             :format="['xls', 'xlsx']"
             accept=".xls, .xlsx"
             :on-success="importSuccess"
             :on-progress="importLoading"
+            :on-remove="remove"
+            :data="{ projectId: projectId }"
           >
             <Button
               v-if="uploadBtn"
               icon="ios-cloud-upload-outline"
-              style="color: #3399ff; "
+              style="color: #3399ff"
               >选择要导入的文件</Button
             >
           </Upload>
-          <div v-if="showTip">
+          <div v-if="uploadBtn">
             <p>1. 支持的文件格式为: xls、xlsx;</p>
-            <p>2. 下载模板文件: 点击此处</p>
+            <p>
+              2. 下载模板文件:
+              <a :href="templateFile" target="_blank">点击此处</a>
+            </p>
           </div>
-          <div v-else>
+          <div v-else-if="importRet">
             <Divider />
             <!-- <p >{{importRet}}</p> -->
             <p>导入情况</p>
             <div style="margin-left: 50px">
               <p>导入成功{{ successCnt }}条，导入失败{{ failCnt }}条</p>
-              <p v-if="failCnt > 0">下载导入失败的数据，点击此处</p>
+              <p v-if="failCnt > 0">
+                下载导入失败的数据，<a
+                  @click="downloadAndDelete"
+                  target="_blank"
+                  >点击此处</a
+                >
+              </p>
             </div>
           </div>
         </template>
@@ -55,7 +60,7 @@
       <div slot="footer" flex>
         <div flex-box="1"></div>
         <div flex-box="0">
-          <Button @click="cancel">取消</Button>
+          <Button @click="cancel">{{ failFileName ? "取消" : "关闭" }}</Button>
         </div>
         <!-- <div flex-box="0">
           <Button :loading="submitLoading" type="success" @click="save"
@@ -85,73 +90,79 @@ export default {
 
       showTip: true,
       uploadBtn: true,
-      importRet: "",
-      failCnt: 1,
+      importRet: false,
+      failCnt: 0,
       successCnt: 0,
+      failFileName: "",
+      uploadHeader: {
+        Authorization: "",
+      },
+      uploadAction: `${window.axios.defaults.baseURL}/table/import`,
+      templateFile: `${window.axios.defaults.baseURL}/excel/template.xlsx`,
+      failFilePrefix: `${window.axios.defaults.baseURL}/table/download`,
     };
   },
   computed: {},
   mounted() {
     var _this = this;
     _this.isShow = _this.open;
+    _this.uploadHeader.Authorization = _this.$store.state.token;
   },
   methods: {
-    save() {
-      var _this = this;
-
-      if (!_this.formData.name) {
-        _this._N("请输入字段名称");
-        return false;
-      }
-
-      if (!_this.formData.jsonpath && _this.tableType != "规则表") {
-        _this._N("请输入JsonPath");
-        return false;
-      }
-
-      if (!_this.formData.parameter && _this.tableType == "规则表") {
-        _this._N("请输入参数");
-        return false;
-      }
-
-      if (
-        _this.formData.isTrans &&
-        !_this.formData.defaultValue &&
-        _this.tableType == "影像表"
-      ) {
-        _this._N("请输入默认值");
-        return false;
-      }
-
-      // if (!_this.formData.remark) {
-      //   _this._N("请输入备注");
-      //   return false;
-      // }
-
-      _this.formData.tableId = _this.tableId;
-      _this.formData.projectId = _this.projectId;
-
-      _this.submitLoading = true;
-      _this.$http.post(`/data/addField`, _this.formData).then((res) => {
-        if (res) {
-          _this.isShow = false;
-          _this.$parent.openFieldImportModel = false;
-          _this.$parent.getFieldData();
-        } else {
-          _this.submitLoading = false;
-        }
-      });
-    },
     cancel() {
       this.$parent.openFieldImportModel = false;
+      this.rollbackUpload();
     },
     importLoading() {
-      this.showTip = false;
       this.uploadBtn = false;
     },
     importSuccess(data) {
-      console.log("import cb", data);
-      this.importRet = "导入成功";
+      if (data.status == 200) {
+        this.importRet = true;
+        this.uploadBtn = false;
+        this.successCnt = data.data.success;
+        this.failCnt = data.data.failure;
+        this.failFileName = data.data.file.toString();
+        return false;
+      }
+      this.$refs.import.clearFiles();
+      this.uploadBtn = true;
+      this.importRet = false;
+      this._N(data.message);
+    },
+    remove() {
+      this.uploadBtn = true;
+      this.importRet = false;
+    },
+    downloadAndDelete() {
+      const _this = this;
+      const fullPath = `${this.failFilePrefix}/1/${this.failFileName}`;
+      this.$http.get(fullPath, { responseType: "blob" }).then((data) => {
+        _this.failFileName = "";
+        if (!data) {
+          return;
+        }
+        _this.cancel();
+        let ex = _this.failFileName.split('.').pop();
+        let blobType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+        if (ex == 'xls') {
+          blobType = "application/vnd.ms-excel";
+        }
+        let url = window.URL.createObjectURL(new Blob([data.data], { type: blobType }));
+        let link = document.createElement("a");
+        link.style.display = "none";
+        link.href = url;
+        link.setAttribute("download", _this.failFileName);
+        document.body.appendChild(link);
+        link.click();
+      });
+    },
+    rollbackUpload() {
+      const _this = this;
+      if (this.failFileName != "") {
+        const fullPath = `${this.failFilePrefix}/0/${this.failFileName}`;
+        this.$http.get(fullPath);
+      }
     },
   },
 };
