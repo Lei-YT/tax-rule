@@ -22,6 +22,7 @@
         <Option value="单据报错">单据报错</Option>
         <Option value="影像报错">影像报错</Option>
         <Option value="变量报错">变量报错</Option>
+        <Option value="行信息报错">行信息报错</Option>
       </Select>
 
 
