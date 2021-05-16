@@ -12,7 +12,7 @@ module.exports = {
 
         //设置路径别名 key,value自行定义，比如.set('@@', resolve('src/components'))
         // config.resolve.alias.set('@@', resolve('src/components'))
-        
+
         // 移除 prefetch 插件
         config.plugins.delete('prefetch');
         config.plugins.delete('preload')
@@ -20,13 +20,13 @@ module.exports = {
 
     productionSourceMap: false, //如果你不需要生产环境的 source map，可以将其设置为 false 以加速生产环境构建。
 
-    
+
 
 
 
     configureWebpack: config => {
 
-        
+
 
         if (isProduction) {
             // 开启gzip压缩
@@ -72,7 +72,7 @@ module.exports = {
             '/': {
                 // target: 'http://192.168.5.146:90',
                 // target: 'http://192.168.5.216:8762',
-                target: 'http://192.168.5.146:8762',
+                target: 'http://192.168.5.146:9000',
                 ws: false,
                 changOrigin: true,//允许跨域
                 pathRewrite: {

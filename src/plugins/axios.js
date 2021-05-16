@@ -13,9 +13,9 @@ import router from '../router'
 
 let config = {
   // baseURL: window.apiUrl,
-  // baseURL: process.env.NODE_ENV == 'development' ? '/' : window.apiUrl,
+  baseURL: process.env.NODE_ENV == 'development' ? '/api' : 'http://10.15.196.127',
 //   baseURL:'/api',
-  baseURL:'http://10.15.196.127',
+//   baseURL:'http://192.168.5.146:9000/api',
   timeout: 60 * 1000 * 5, // Timeout
   // withCredentials: true, // Check cross-site Access-Control
 };
@@ -100,7 +100,7 @@ _axios.interceptors.response.use(
     // (510, "规则解析失败");
 
   },
-  function (error) {
+  function (err) {
     if (err && err.response) {
       switch (err.response.status) {
         case 400:

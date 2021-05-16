@@ -141,15 +141,15 @@ export default {
     },
     copyData(data) {
       //复制
-      this.$store.commit("copyData", data);
+      this.$store.commit("copyData", JSON.parse(JSON.stringify(data)));
       this._M("复制成功");
       this.$refs.wrap.click();
     },
     pasteData(index) {
       //粘贴
-      //  this.items[index]['conditions'].push(this.$store.state.copyData)
       var _this = this;
-      _.each(this.$store.state.copyData, function (v) {
+      const deepCopy = JSON.parse(JSON.stringify(this.$store.state.copyData));
+      _.each(deepCopy, function (v) {
         _this.items[index]["conditions"].push(v);
       });
       _this.$refs.wrap.click();

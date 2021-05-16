@@ -40,7 +40,7 @@
       </div>
     </div>
 
-    
+
   </div>
 </template>
 
@@ -116,7 +116,8 @@ export default {
       //粘贴
       //  this.items[index]['conditions'].push(this.$store.state.copyData)
       var _this = this;
-      _.each(this.$store.state.copyData, function (v) {
+      const deepCopy = JSON.parse(JSON.stringify(this.$store.state.copyData));
+      _.each(deepCopy, function (v) {
         _this.items[index]["conditions"].push(v);
       });
       _this.$refs.wrap.click();
