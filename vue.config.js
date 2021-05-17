@@ -69,14 +69,14 @@ module.exports = {
         https: false,
         hotOnly: false,
         proxy: {//配置跨域
-            '/': {
+            '/api': {
                 // target: 'http://192.168.5.146:90',
                 // target: 'http://192.168.5.216:8762',
                 target: 'http://192.168.5.146:9000',
                 ws: false,
                 changOrigin: true,//允许跨域
                 pathRewrite: {
-                    '^/api': ''//请求的时候使用这个api就可以
+                    '^/api': '/api'//请求的时候使用这个api就可以
                 }
             }
         }

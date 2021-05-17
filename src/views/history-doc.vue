@@ -59,7 +59,7 @@
               style="width: 120px"
             ></DatePicker>
           </div>
-          
+
         </div>
         <div flex-box="0" flex="cross:bottom">
           <Button size="small" type="primary" icon="ios-search" @click="getData">查询</Button>
@@ -80,7 +80,7 @@
       <template slot="auditResult" slot-scope="{row}">
         <span v-if="row.auditResult" style="color:#19be6b">通过</span>
         <span v-else style="color:#ed4014">不通过</span>
-        
+
       </template>
 
       <template slot="action" slot-scope="{row}">
@@ -186,7 +186,12 @@ export default {
         {
           title: "单据编号",
           key: "billNo",
-          minWidth:200 
+          minWidth:200
+        },
+        {
+          title: "单据类型",
+          key: "billType",
+          minWidth:80
         },
         {
           title: "项目",
@@ -261,7 +266,7 @@ export default {
     }
   },
   filters: {
-    
+
   }
 };
 </script>
