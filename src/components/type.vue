@@ -239,7 +239,7 @@ export default {
           value: "", //字符串
           number: null, //数字
         });
-      } else if (name == "日期相减返回天" || name == "日期相减返回月") {
+      } else if (name == "日期相减返回天" || name == "日期相减返回月" || name == "最大最小日期相减返回天") {
         items.push({
           name: data.name,
           date1: {
