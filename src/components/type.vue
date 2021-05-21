@@ -8,7 +8,7 @@
       <div v-show="collapse" class="b-tree" v-if="data.conditions.length">
         <vuedraggable v-model="data.conditions" :animation="350" handle=".drag-handle">
           <transition-group>
-            <div class="b-tree-item" v-for="(vo,index) in data.conditions" :key="index" flex>
+            <div class="b-tree-item" v-for="(vo,index) in data.conditions" :key="index+'x'" flex>
               <Icon
                 type="ios-menu"
                 size="14"

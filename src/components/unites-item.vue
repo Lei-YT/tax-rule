@@ -8,7 +8,7 @@
               <div
                 class="dom-tree-li"
                 v-for="(vo,index) in items"
-                :key="index"
+                :key="index+'x'"
                 style="padding:4px 2px"
               >
                 <div v-if="vo.actionType==='条件'">
