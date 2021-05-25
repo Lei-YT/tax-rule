@@ -50,7 +50,7 @@
         z-index: 1000;
       "
     >
-      <div flex-box="1" flex="cross:center">
+      <div flex-box="0" flex="cross:center">
         <Button
           icon="md-bulb"
           size="small"
@@ -96,6 +96,23 @@
           </Select>
         </span>
       </div>
+        <div flex-box="0" class="search-title" flex="cross:center">
+          <div style="margin-right:15px">
+            标题：
+            <Input
+              v-model="searchKeyword"
+              clearable
+              size="small"
+              type="text"
+              placeholder="请输入..."
+              style="width:200px"
+            />
+          </div>
+        </div>
+        <div flex-box="1" flex="cross:center">
+          <Button size="small" type="success" icon="ios-search" @click="handleSearch">查询</Button>
+          <Button size="small" type="success" icon="md-refresh" @click="searchReset" style="margin-left:1rem">重置</Button>
+        </div>
       <div flex-box="0" flex="cross:center">
         <Button
           icon="md-code"
@@ -438,10 +455,12 @@ export default {
       currentYe: "",
       items: [],
       allData: [],
+      dataNoPage: [],
       testJson: [],
       id: null,
       tableLoading: false,
-      warnData: []
+      warnData: [],
+      searchKeyword: ''
     };
   },
   computed: {},
@@ -453,6 +472,18 @@ export default {
     _this.getWarnData();
   },
   methods: {
+    handleSearch(){
+      const _this = this;
+      const filterRules = _this.dataNoPage.filter(r => {
+        return (r.title).indexOf(String(_this.searchKeyword).trim()) !== -1
+          || (r.sign).indexOf(String(_this.searchKeyword).trim()) !== -1;
+      })
+      _this.items = filterRules;
+    },
+    searchReset() {
+      this.searchKeyword = '';
+      this.init();
+    },
     getData() {
       var _this = this;
       _this.tableLoading = true;
@@ -463,7 +494,6 @@ export default {
             if (res.data.data) {
               _this.id = res.data.data.id;
               var tempData = JSON.parse(res.data.data.ruleFormat);
-              // _this.allData = tempData;
               _this.allData = tempData.map((di) => {
                 const newItems = di.items.map((rule) => ({
                   warnId: null,
@@ -472,6 +502,11 @@ export default {
                 }));
                 return { ...di, items: newItems };
               });
+              let dataNoPage = [];
+              _this.allData.map(r => {
+                dataNoPage = dataNoPage.concat(r.items);
+              });
+              _this.dataNoPage = dataNoPage;
               _this.$store.commit("ruleData", _this.allData);
               _this.init();
             }
