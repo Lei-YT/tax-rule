@@ -14,9 +14,10 @@
             <span class="cursor blue" slot="button">变量：</span>
           </typeChange>
       </span>
-      <span v-if="data.date1.type=='1'" class="green">
+      <!-- <span v-if="data.date1.type=='1'" class="green">
       {{data.date1.variable.name||"____"}}
-      </span>
+      </span> -->
+                <variablePoptip v-if="data.date1.type=='1'" :variable="data.date1.variable" />
       <span v-if="data.date1.type=='2'">
           <DatePicker :value="data.date1.value" size="small" @on-change="data.date1.value = $event" type="date" placeholder="选择日期..." style="width: 115px"></DatePicker>
       </span>，
@@ -32,9 +33,10 @@
             <span class="cursor blue" slot="button">变量：</span>
           </typeChange>
       </span>
-      <span v-if="data.date2.type=='1'" class="green">
+      <!-- <span v-if="data.date2.type=='1'" class="green">
             {{data.date2.variable.name||"____"}}
-      </span>
+      </span> -->
+                <variablePoptip v-if="data.date2.type=='1'" :variable="data.date2.variable" />
       <span v-if="data.date2.type=='2'">
           <DatePicker size="small" :value="data.date2.value" @on-change="data.date2.value = $event" type="date" placeholder="选择日期..." style="width: 115px"></DatePicker>
       </span>

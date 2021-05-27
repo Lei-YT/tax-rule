@@ -15,8 +15,8 @@
             style="margin-right:5px"
           />
         <!-- <span style="color:#999">[{{vo.tableName}}]</span> -->
-        <span class="green">{{vo.name}}</span>
-          
+        <!-- <span class="green">{{vo.name}}</span> -->
+                <variablePoptip :variable="vo" />
       </div>
 
       <div class="b-tree-item">
@@ -33,7 +33,8 @@
       <template v-if="data.conditions.length">
         <span v-for="(vo,index) in data.conditions" :key="index" flex="cross:center">
           <!-- <span style="color:#999">[{{vo.tableName}}]</span> -->
-          <span class="green">{{vo.name}}</span>
+          <!-- <span class="green">{{vo.name}}</span> -->
+              <variablePoptip :variable="vo" />
           <Icon
             @click="del(index)"
             color="#999"
@@ -56,8 +57,9 @@
 
 <script>
 import typeChange from "@/components/type-change.vue";
+import variablePoptip from "@/components/variable-poptip.vue";
 export default {
-  components: { typeChange },
+  components: { typeChange ,variablePoptip},
   props: ["data"],
   data() {
     return {};

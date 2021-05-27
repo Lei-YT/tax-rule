@@ -4,7 +4,8 @@
       <span style="margin-right:5px">{{data.name}}（</span>
 
       <template v-if="!_.isEmpty(data.conditions)">
-        <span class="green">{{data.conditions[0]['name']}}</span>
+        <!-- <span class="green">{{data.conditions[0]['name']}}</span> -->
+              <variablePoptip :variable="data.conditions[0]" />
         <Icon
           @click="del(0)"
           color="#999"
@@ -22,7 +23,7 @@
       ，
       <span>截取：</span>
 
-    
+
       <span>
           <InputNumber  size="small" :min="1" :max="10000" v-model="data.start" placeholder="正整数" style="width:60px"/>
         </span>
@@ -40,8 +41,9 @@
 
 <script>
 import typeChange from "@/components/type-change.vue";
+import variablePoptip from "@/components/variable-poptip.vue";
 export default {
-  components: { typeChange },
+  components: { typeChange,variablePoptip },
   props: ["data"],
   methods: {
     getVariable(res) {

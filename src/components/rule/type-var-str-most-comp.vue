@@ -27,7 +27,8 @@
               <span class="cursor blue" slot="button">变量：</span>
             </typeChange>
           </span>
-          <span v-if="vo.type=='1'" class="green">{{vo.variable.name||"____"}}</span>
+          <!-- <span v-if="vo.type=='1'" class="green">{{vo.variable.name||"____"}}</span> -->
+          <variablePoptip v-if="vo.type=='1'" :variable="vo.variable" />
           <span v-if="vo.type=='2'">
             <Input
               size="small"
@@ -38,7 +39,7 @@
             />
           </span>
         </span>
-         
+
           </div>
           <div class="b-tree-item"><span class="cursor blue" slot="button" @click="add" style="margin-left:3px">+</span></div>
       </div>
@@ -50,7 +51,7 @@
 
 
     <div flex="cross:center" v-if="data.conditions.length<2">
-      <span>{{data.name}}（</span> 
+      <span>{{data.name}}（</span>
 
       <template v-for="(vo,index) in data.conditions">
         <span :key="index" flex="cross:center">
@@ -65,7 +66,9 @@
               <span class="cursor blue" slot="button">变量：</span>
             </typeChange>
           </span>
-          <span v-if="vo.type=='1'" class="green">{{vo.variable.name||"____"}}</span>
+          <!-- <span v-if="vo.type=='1'" class="green">{{vo.variable.name||"____"}}</span> -->
+                    <variablePoptip v-if="vo.type=='1'" :variable="vo.variable" />
+
           <span v-if="vo.type=='2'">
             <Input
               size="small"
@@ -96,8 +99,9 @@
 
 <script>
 import typeChange from "@/components/type-change.vue";
+import variablePoptip from "@/components/variable-poptip.vue";
 export default {
-  components: { typeChange },
+  components: { typeChange,variablePoptip },
   props: ["data"],
   data() {
     return {};

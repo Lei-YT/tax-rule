@@ -13,9 +13,10 @@
             <span class="cursor blue" slot="button">变量：</span>
           </typeChange>
       </span>
-      <span v-if="data.type=='1'" class="green">
+      <!-- <span v-if="data.type=='1'" class="green">
       {{data.variable.name||"____"}}
-      </span>
+      </span> -->
+              <variablePoptip v-if="data.type=='1'" :variable="data.variable" />
       <span v-if="data.type=='2'">
           <Input size="small" v-model="data.value"  type="text" placeholder="请输入..." style="width: 120px" />
       </span>
@@ -26,8 +27,9 @@
 
 <script>
 import typeChange from "@/components/type-change.vue";
+import variablePoptip from "@/components/variable-poptip.vue";
 export default {
-  components: {typeChange},
+  components: {typeChange,variablePoptip},
   props: ["data"],
   methods: {
       getVariable(res){

@@ -20,7 +20,31 @@
           <typeChange @on-change="getVariable(index,$event)" type="var" position="bottom-start">
             <span class="cursor blue" slot="button">变量：</span>
           </typeChange>
-          <span class="green">{{vo.variable.name||'______'}}</span>
+          <!-- <span class="green">{{vo.variable.name||'______'}}</span> -->
+            <Poptip  padding="0" trigger="hover" placement="bottom-start">
+            <span class="cursor green"> {{vo.variable.name||'______'}} </span>
+            <div slot="content" style="padding: 1rem;min-width: 300px;">
+              <template v-if="vo.variable.name">
+              <Row type="flex" justify="start" class="code-row-bg">
+                <Col span="8">类型</Col>
+                <Col span="16">{{vo.variable.type}}</Col>
+              </Row>
+              <Row type="flex" justify="start" class="code-row-bg">
+                <Col span="8">是否特殊</Col>
+                <Col span="16">{{vo.variable.isSpecial}}</Col>
+              </Row>
+              <Row type="flex" justify="start" class="code-row-bg">
+                <Col span="8">jsonpath</Col>
+                <Col span="16">{{vo.variable.jsonpath}}</Col>
+              </Row>
+              <Row type="flex" justify="start" class="code-row-bg">
+                <Col span="8">默认值</Col>
+                <Col span="16">{{String(vo.variable.defaultValue)}}</Col>
+              </Row>
+              </template>
+              <div v-else style="padding:0px;color:#999">变量数据</div>
+            </div>
+            </Poptip>
           ，
           <Poptip padding="0" trigger="hover" placement="bottom-start">
             <span class="cursor blue">规则：</span>
@@ -62,7 +86,7 @@
       <span class="cursor blue" slot="button" @click="add">+</span>
       <span style="margin-left:5px">）</span>
     </div>
-    
+
   </div>
 </template>
 

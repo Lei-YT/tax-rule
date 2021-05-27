@@ -7,7 +7,7 @@
       <div style="margin-right:5px">{{data.name}}</div>
       <div class="b-tree">
         <div class="b-tree-item">
-          <span v-if="!_.isEmpty(data.targetVariable)">
+          <template v-if="!_.isEmpty(data.targetVariable)">
           <Icon
             @click="data.targetVariable={}"
             color="#999"
@@ -16,13 +16,14 @@
             type="ios-remove-circle-outline"
             style="margin-right:5px"
           />
-          </span>
+          </template>
           <typeChange @on-change="getTargetVariable" type="var" position="bottom-start" v-if="_.isEmpty(data.targetVariable)">
             <span class="cursor blue" slot="button">选择目标变量</span>
           </typeChange>
 
           <span v-if="!_.isEmpty(data.targetVariable)">
-          <span class="green">{{data.targetVariable.name||'______'}}</span>
+          <!-- <span class="green">{{data.targetVariable.name||'______'}}</span> -->
+                    <variablePoptip :variable="data.targetVariable" style="display:inline-block"/>
           </span>
         </div>
           <div class="b-tree-item" v-for="(vo,index) in data.conditions" :key="index" flex="cross:center">
@@ -41,12 +42,13 @@
               <Option value="2">输入</Option>
             </Select>
           </span>
-          <span v-if="vo.type=='1'">
+          <template v-if="vo.type=='1'">
             <typeChange @on-change="getVariable(index,$event)" type="var" position="bottom-start">
               <span class="cursor blue" slot="button">变量：</span>
             </typeChange>
-          </span>
-          <span v-if="vo.type=='1'" class="green">{{vo.variable.name||"____"}}</span>
+          </template>
+          <!-- <span v-if="vo.type=='1'" class="green">{{vo.variable.name||"____"}}</span> -->
+                    <variablePoptip v-if="vo.type=='1'" :variable="vo.variable" />
           <span v-if="vo.type=='2'">
             <Input
               size="small"
@@ -57,7 +59,7 @@
             />
           </span>
         </span>
-         
+
           </div>
           <div class="b-tree-item"><span class="cursor blue" slot="button" @click="add" style="margin-left:3px">+</span></div>
       </div>
@@ -69,14 +71,15 @@
 
 
     <div flex="cross:center" v-if="data.conditions.length<2">
-      <span style="margin-right:5px">{{data.name}}（</span> 
+      <span style="margin-right:5px">{{data.name}}（</span>
 
       <typeChange @on-change="getTargetVariable" type="var" position="bottom-start" v-if="_.isEmpty(data.targetVariable)">
             <span class="cursor blue" slot="button">选择目标变量</span>
           </typeChange>
 
-          <span v-if="!_.isEmpty(data.targetVariable)">
-          <span class="green">{{data.targetVariable.name||'______'}}</span>
+          <template v-if="!_.isEmpty(data.targetVariable)">
+          <!-- <span class="green">{{data.targetVariable.name||'______'}}</span> -->
+                    <variablePoptip :variable="data.targetVariable" />
           <Icon
             @click="data.targetVariable={}"
             color="#999"
@@ -85,7 +88,7 @@
             type="ios-remove-circle-outline"
             style="margin-left:5px"
           />
-          </span>
+          </template>
       ，
 
       <template v-for="(vo,index) in data.conditions">
@@ -101,7 +104,9 @@
               <span class="cursor blue" slot="button">变量：</span>
             </typeChange>
           </span>
-          <span v-if="vo.type=='1'" class="green">{{vo.variable.name||"____"}}</span>
+          <!-- <span v-if="vo.type=='1'" class="green">{{vo.variable.name||"____"}}</span> -->
+                    <variablePoptip v-if="vo.type=='1'" :variable="vo.variable" />
+
           <span v-if="vo.type=='2'">
             <Input
               size="small"
@@ -132,8 +137,9 @@
 
 <script>
 import typeChange from "@/components/type-change.vue";
+import variablePoptip from "@/components/variable-poptip.vue";
 export default {
-  components: { typeChange },
+  components: { typeChange,variablePoptip },
   props: ["data"],
   data() {
     return {};

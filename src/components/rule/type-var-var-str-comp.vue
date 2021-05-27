@@ -7,8 +7,9 @@
             <span class="cursor blue" slot="button">选择目标变量</span>
           </typeChange>
 
-          <span v-if="!_.isEmpty(data.targetVariable)">
-          <span class="green">{{data.targetVariable.name||'______'}}</span>
+          <template v-if="!_.isEmpty(data.targetVariable)">
+          <!-- <span class="green">{{data.targetVariable.name||'______'}}</span> -->
+          <variablePoptip :variable="data.targetVariable" />
           <Icon
             @click="data.targetVariable={}"
             color="#999"
@@ -17,7 +18,7 @@
             type="ios-remove-circle-outline"
             style="margin-left:5px"
           />
-          </span>
+          </template>
       ，
       <span style="margin-right:5px;margin-left:5px">
         <Select v-model="data.type" size="small" style="width:70px">
@@ -30,9 +31,10 @@
             <span class="cursor blue" slot="button">变量：</span>
           </typeChange>
       </span>
-      <span v-if="data.type=='1'" class="green">
+      <!-- <span v-if="data.type=='1'" class="green">
       {{data.variable.name||"____"}}
-      </span>
+      </span> -->
+              <variablePoptip v-if="data.type=='1'" :variable="data.variable" />
       <span v-if="data.type=='2'">
           <Input size="small" v-model="data.value"  type="text" placeholder="请输入..." style="width: 120px" />
       </span>
@@ -43,8 +45,9 @@
 
 <script>
 import typeChange from "@/components/type-change.vue";
+import variablePoptip from "@/components/variable-poptip.vue";
 export default {
-  components: {typeChange},
+  components: {typeChange,variablePoptip},
   props: ["data"],
   methods: {
       getVariable(res){

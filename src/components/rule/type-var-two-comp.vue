@@ -5,7 +5,8 @@
       <span style="margin-right:5px">{{data.name}}（</span>
 
           <template v-if="!_.isEmpty(data.conditions[0])">
-          <span class="green">{{data.conditions[0].name}}</span>
+          <!-- <span class="green">{{data.conditions[0].name}}</span> -->
+              <variablePoptip :variable="data.conditions[0]" />
           <Icon
             @click="del(0)"
             color="#999"
@@ -19,7 +20,8 @@
           </typeChange>
           ，
           <template v-if="!_.isEmpty(data.conditions[1])">
-          <span class="green">{{data.conditions[1].name}}</span>
+          <!-- <span class="green">{{data.conditions[1].name}}</span> -->
+          <variablePoptip :variable="data.conditions[1]" />
           <Icon
             @click="del(1)"
             color="#999"
@@ -30,8 +32,8 @@
           </template>
           <typeChange v-if="_.isEmpty(data.conditions[1])" @on-change="change(1,$event)" type="var" position="bottom-start">
             <span class="cursor blue" slot="button">选择变量</span>
-          </typeChange> 
-      
+          </typeChange>
+
      <span style="margin-left:5px">）</span>
     </div>
 
@@ -41,8 +43,9 @@
 
 <script>
 import typeChange from "@/components/type-change.vue";
+import variablePoptip from "@/components/variable-poptip.vue";
 export default {
-  components: { typeChange },
+  components: { typeChange,variablePoptip },
   props: ["data"],
   data() {
     return {};
