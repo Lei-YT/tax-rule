@@ -8,18 +8,18 @@
           v-if="index==0"
         >当</span>
         <span style="margin-right:5px" v-else>
-          <Select size="small" v-model="vo.type" @on-change="typeChange" placeholder="选择" style="width:60px">
+          <Select filterable size="small" v-model="vo.type" @on-change="typeChange" placeholder="选择" style="width:60px">
             <Option value="or">or</Option>
             <Option value="and">and</Option>
           </Select>
         </span>
-        <Select size="small" v-model="vo.rule" placeholder="选择" style="width:340px">
+        <Select filterable size="small" v-model="vo.rule" placeholder="选择" style="width:340px">
           <OptionGroup v-for="item in ruleList" :key="item.id" :label="item.name">
             <Option v-for="vo in item.items" :disabled="sign===vo.sign" :value="vo.sign" :key="vo.sign">{{vo.title}}</Option>
         </OptionGroup>
         </Select>
         <span style="margin:0 5px">=</span>
-        <Select
+        <Select filterable
           size="small"
           v-model="vo.value"
           placeholder="选择"
@@ -43,7 +43,7 @@
         >添加</Button>
       </div>
 
-      
+
     </div>
   </div>
 </template>
@@ -64,7 +64,7 @@ export default {
   //                 if (item.items&&item.items.length) {
   //                   result = result.concat(flatten(item.items));
   //                   item.items = []
-  //                 } 
+  //                 }
   //               })
   //               return result;
   //             };
