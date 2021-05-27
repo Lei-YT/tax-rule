@@ -122,7 +122,7 @@
       <!-- {{resultData}} -->
       <div style="padding:40px 60px;width:100%">
 
-        
+
         <div style="padding:20px;background:#fff">
           <h3>单据编号：{{resultData.bills}}</h3>
           <h3 style="margin:20px 0">结果：{{resultData.result}}</h3>
@@ -157,8 +157,13 @@
           <Table style="width:100%" :columns="columns" border :data="tableData" :disabled-hover="true">
 
             <template slot="rules" slot-scope="{row}">
-              <p flex="cross:center" class="table-item" v-for="(v,i) in row.rules" :key="i" :style="{height:(v.lineTotal||1)*50+'px'}">
-                  {{v.ruleName}}：<span :style="{color:v.result?'#666':'#ccc'}">{{v.result}}</span>
+              <p flex="cross:center" class="table-item" v-for="(v,i) in row.rules" :key="i"
+              :style="{height:(v.lineTotal||1)*50+'px', width: 'inherit'}"
+              >
+              <Tooltip :content="v.ruleName" placement="top-start" max-width="300" >
+                 <span style="display:inline-block;width:inherit; white-space: nowrap;text-overflow: ellipsis;overflow: hidden;"> {{v.ruleName}}：</span>
+              </Tooltip >
+                  <span :style="{color:v.result?'#666':'#ccc', width: '5rem','text-align': 'right'}">{{v.result}}</span>
                 </p>
             </template>
 
@@ -179,14 +184,14 @@
                     </p>
                 </template>
             </template>
-          
-            
+
+
           </Table>
           <div style="height:50px"></div>
         </div>
 
 
-      
+
 
       </div>
     </div>
@@ -356,8 +361,8 @@ export default {
                         })
                     }
             })
-               
-          
+
+
 
           _this.tableData = JSON.parse(JSON.stringify(_this.resultData.scenes))
           }
@@ -376,7 +381,7 @@ export default {
   // }
 };
 </script>
-<style scoped>
+<style scoped lang="less">
 [v-cloak] {
   display: none;
 }
@@ -441,9 +446,18 @@ export default {
 .table-item {
   height: 50px;
   border-bottom: #eee 1px solid;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+  overflow: hidden;
 }
 .table-item:last-child {
   border-bottom: none;
+}
+.table-item .ivu-tooltip{
+  width: calc(100% - 8rem) ;
+}
+/deep/.table-item .ivu-tooltip .ivu-tooltip-rel {
+  width: 100%;
 }
 
 
@@ -463,5 +477,4 @@ export default {
 .errors-item:last-child {
   border-bottom: none;
 }
-
 </style>
