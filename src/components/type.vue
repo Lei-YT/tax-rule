@@ -24,10 +24,11 @@
                 style="margin:4px 5px 0 0"
               />
 
-              <span v-if="vo.tableName&&vo.tableName!=''">
+              <template v-if="vo.tableName&&vo.tableName!=''">
                 <span style="color:#999">[{{vo.tableName}}]</span>
-                {{vo.name}}
-              </span>
+                <!-- {{vo.name}} -->
+                <variablePoptip :variable="vo" />
+              </template>
 
               <component v-else :data="vo" :is="$store.state.funcFlatData[vo.name]" />
             </div>
@@ -42,11 +43,13 @@
 import "@/components/rule/index.js";
 import vuedraggable from "vuedraggable";
 import typeChange from "@/components/type-change.vue";
+import variablePoptip from "@/components/variable-poptip.vue";
 
 export default {
   components: {
     vuedraggable,
     typeChange,
+    variablePoptip
   },
   props: ["data"],
   data() {
