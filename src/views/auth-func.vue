@@ -207,6 +207,16 @@
                     <span style="color:#2d8cf0;margin-left:5px">变量：</span>_______
                     ）</div>
               </div>
+              <div flex class="item">
+                  <div style="margin-right:10px">typeVarVarStrStrComp:</div>
+                  <div>（
+                      <span style="color:#2d8cf0">选择目标变量</span>，
+                      <Select value="1" size="small" style="width:70px">
+                        <Option value="1">变量</Option>
+                        <Option value="2">输入</Option>
+                    </Select>
+                    <span style="color:#2d8cf0;margin-left:5px">变量：</span>_______）</div>
+              </div>
 
           </div>
         </Card>
