@@ -14,11 +14,13 @@
           </Select>
         </span>
         <Select filterable size="small" v-model="vo.rule" placeholder="选择" style="width:340px">
-          <OptionGroup v-for="item in ruleList" :key="item.id" :label="item.name">
-            <Option v-for="vo in item.items" :disabled="sign===vo.sign" :value="vo.sign" :key="vo.sign">{{vo.title}}</Option>
+          <OptionGroup v-for="item in ruleList" :key="item.id" :label="item.name" style="max-width:500px;overflow:auto;">
+            <Option v-for="vo in item.items" :disabled="sign===vo.sign" :value="vo.sign" :key="vo.sign" style="max-width:500px">
+              {{vo.title}}
+            </Option>
         </OptionGroup>
         </Select>
-        <span style="margin:0 5px">=</span>
+        <span style="margin:0 5px"> = </span>
         <Select filterable
           size="small"
           v-model="vo.value"
