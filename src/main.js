@@ -23,6 +23,9 @@ Vue.config.productionTip = false
 Vue.prototype.$log = window.console.log
 // Vue.prototype.$ajaxUrl = window.apiUrl
 
+if (process.env.NODE_ENV === 'development') {
+    require('@/mock/index')
+  }
 
 function loopData(arr){
   _.each(arr,function(v){
@@ -38,9 +41,9 @@ function loopData(arr){
 router.beforeEach((to, from, next) => {
   Util.title(to.meta.title);
   ViewUI.LoadingBar.start();
-  
+
   // console.log(to.name)
-  
+
   if(to.query.token){
     //当url存在token时拦截token，获取新令牌，跳转到首页
     axios.get("/auth/menu",{
@@ -64,7 +67,7 @@ router.beforeEach((to, from, next) => {
     })
 
     return false
-    
+
   }
 
   if (store.state.login != 'true' && to.name != 'Login') {

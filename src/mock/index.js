@@ -1,7 +1,24 @@
 import Mock from 'mockjs'
+import treeData from './tree.json'
+import getrule from './getrule2.json'
+import ruleData from './ruleFormat.json'
+const ruleStr = JSON.stringify(ruleData)
+
+// console.log(ruleStr.replace(/"/gm, '\\"'));
+
 
 const Random = Mock.Random
 
+Mock.mock(/api\/rule\/getRule/, 'post', (req, res) => {
+    // console.log('mock', req, getrule)
+    return Mock.mock(getrule);
+})
+Mock.mock(/api\/func\/tree/, 'get', (req, res) => {
+    // console.log('mock', req, getrule)
+    return Mock.mock(treeData);
+})
+
+/*
 Mock.mock('/api/login','post', (req, res) => {
     return Mock.mock({
         'user': Random.cname(),
@@ -65,5 +82,5 @@ Mock.mock('/api/getAudit', 'get', (req, res) => {
     message: '成功'
   }
 })
-
+*/
 

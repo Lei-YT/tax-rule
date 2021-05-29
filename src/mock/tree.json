@@ -1,0 +1,45 @@
+{
+  "status": 200,
+  "message": "成功",
+  "data": [
+      {
+          "id": 62,
+          "name": "值",
+          "alias": null,
+          "type": null,
+          "components": "typeValueComp",
+          "pid": 0,
+          "enabled": true,
+          "sort": 3,
+          "createTime": "2020-07-02 17:26:15",
+          "updateTime": "2020-08-12 23:12:56",
+          "children": []
+      },
+      {
+          "id": 63,
+          "name": "循环筛选取值",
+          "alias": null,
+          "type": null,
+          "components": "typeLoopVarComp",
+          "pid": 0,
+          "enabled": true,
+          "sort": 3,
+          "createTime": "2020-07-02 17:26:15",
+          "updateTime": "2020-08-12 23:12:56",
+          "children": []
+      },
+      {
+          "id": 80,
+          "name": "变量",
+          "alias": null,
+          "type": null,
+          "components": null,
+          "pid": 0,
+          "enabled": true,
+          "sort": 7,
+          "createTime": "2020-07-02 17:26:15",
+          "updateTime": "2020-08-12 11:50:46",
+          "children": []
+      }
+  ]
+}
