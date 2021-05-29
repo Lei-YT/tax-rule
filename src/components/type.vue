@@ -108,6 +108,12 @@ export default {
             conditions: [{}, {}],
           });
           break;
+        case "typeLoopVarComp":
+          items.push({
+            name: data.name,
+            conditions: [{}, {}, {}],
+          });
+          break;
         case 'typeListShareComp':
         case 'typeMapShareComp':
         items.push({

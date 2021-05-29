@@ -217,6 +217,14 @@
                     </Select>
                     <span style="color:#2d8cf0;margin-left:5px">变量：</span>_______）</div>
               </div>
+              <div flex class="item">
+                  <div style="margin-right:10px">typeLoopVarComp:</div>
+                  <div>（
+                    <span style="color:#2d8cf0">选择目标变量</span>，
+                    <span style="color:#2d8cf0">选择集合变量</span>，
+                    <span style="color:#2d8cf0">选择集合筛选变量</span>
+                  ）</div>
+              </div>
 
           </div>
         </Card>
