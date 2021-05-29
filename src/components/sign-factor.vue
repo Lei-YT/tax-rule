@@ -16,7 +16,7 @@
         <Select filterable size="small" v-model="vo.rule" placeholder="选择" style="width:340px">
           <OptionGroup v-for="item in ruleList" :key="item.id" :label="item.name" style="max-width:500px;overflow:auto;">
             <Option v-for="vo in item.items" :disabled="sign===vo.sign" :value="vo.sign" :key="vo.sign" style="max-width:500px">
-              {{vo.title}}
+              {{String(vo.title).replace(/"/gm, "'")}}
             </Option>
         </OptionGroup>
         </Select>
