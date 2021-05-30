@@ -38,7 +38,7 @@
           <!-- <span class="green">{{data.conditions[2].name}}</span> -->
           <variablePoptip :variable="data.conditions[2]" />
           <Icon
-            @click="del(1)"
+            @click="del(2)"
             color="#999"
             size="14"
             class="cursor"

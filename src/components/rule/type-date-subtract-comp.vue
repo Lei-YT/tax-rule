@@ -47,8 +47,9 @@
 
 <script>
 import typeChange from "@/components/type-change.vue";
+import variablePoptip from "@/components/variable-poptip.vue";
 export default {
-  components: {typeChange},
+  components: {typeChange, variablePoptip},
   props: ["data"],
   methods: {
       getVariable(res){

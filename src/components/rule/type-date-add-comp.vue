@@ -18,7 +18,7 @@
       <!-- <span v-if="data.date.type=='1'" class="green">
       {{data.date.variable.name||"____"}}
       </span> -->
-      <variablePoptip v-if="data.date.type=='1'" :variable="data.date.variable.variable" />
+      <variablePoptip v-if="data.date.type=='1'" :variable="data.date.variable" />
       <span v-if="data.date.type=='2'">
           <DatePicker size="small" :value="data.date.value" @on-change="data.date.value = $event" type="date" placeholder="选择日期..." style="width: 120px"></DatePicker>
       </span>，
@@ -39,7 +39,7 @@
       <!-- <span v-if="data.number.type=='1'" class="green">
             {{data.number.variable.name||"____"}}
       </span> -->
-      <variablePoptip v-if="data.number.type=='1'" :variable="data.number.variable.variable" />
+      <variablePoptip v-if="data.number.type=='1'" :variable="data.number.variable" />
 
       <span v-if="data.number.type=='2'">
           <InputNumber v-model="data.number.value" size="small" :min="-10000" :max="10000" placeholder="输入..." style="width: 80px" />
