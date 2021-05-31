@@ -1,7 +1,7 @@
 <template>
   <div v-cloak>
     <div>
-      <div v-for="(vo,index) in items" :key="index" flex="cross:center" style="padding:4px 2px">
+      <div v-for="(vo,index) in items" :key="vo.sign" flex="cross:center" style="padding:4px 2px">
         <span
           flex="main:center cross:center"
           style="margin-right:5px;width:60px;background-color:#eee;border-radius: 3px;color:#777"
@@ -15,8 +15,9 @@
         </span>
         <Select filterable size="small" v-model="vo.rule" placeholder="选择" style="width:340px">
           <OptionGroup v-for="item in ruleList" :key="item.id" :label="item.name" style="max-width:500px;overflow:auto;">
-            <Option v-for="vo in item.items" :disabled="sign===vo.sign" :value="vo.sign" :key="vo.sign" style="max-width:500px">
-              {{String(vo.title).replace(/"/gm, "'")}}
+            <Option v-for="vor in item.items" :disabled="sign===vor.sign" :value="vor.sign"
+            v-bind:key="`s${vor.sign}`" style="max-width:500px">
+              {{String(vor.title).replace(/"/gm, "'")}}
             </Option>
         </OptionGroup>
         </Select>
@@ -86,8 +87,11 @@ export default {
     del(i) {
       //删除如果联合条件
       var _this = this;
-      _this.items.splice(i, 1);
+      // this.$nextTick(() => {
+        _this.items.splice(i, 1);
+      // })
       // _this.loopItems();
+      // this.$delete(this.items, i)
     },
     typeChange(val){
       var _this = this;
