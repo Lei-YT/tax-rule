@@ -1,7 +1,7 @@
 <template>
   <div v-cloak>
     <div>
-      <div v-for="(vo,index) in items" :key="vo.sign" flex="cross:center" style="padding:4px 2px">
+      <div v-for="(vo,index) in items" v-bind:key="`${vo.rule}ff${index}`" flex="cross:center" style="padding:4px 2px">
         <span
           flex="main:center cross:center"
           style="margin-right:5px;width:60px;background-color:#eee;border-radius: 3px;color:#777"
@@ -87,11 +87,7 @@ export default {
     del(i) {
       //删除如果联合条件
       var _this = this;
-      // this.$nextTick(() => {
-        _this.items.splice(i, 1);
-      // })
-      // _this.loopItems();
-      // this.$delete(this.items, i)
+      _this.items.splice(i, 1);
     },
     typeChange(val){
       var _this = this;
