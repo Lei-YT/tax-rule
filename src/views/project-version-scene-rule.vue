@@ -476,9 +476,12 @@ export default {
       const _this = this;
       const filterRules = _this.dataNoPage.filter(r => {
         return (r.title).indexOf(String(_this.searchKeyword).trim()) !== -1
-          || (r.sign).indexOf(String(_this.searchKeyword).trim()) !== -1;
+          || String(r.sign).toUpperCase().indexOf(String(_this.searchKeyword).trim().toUpperCase()) !== -1;
       })
       _this.items = filterRules;
+      if (filterRules.length > 0) {
+        _this.matchYe(filterRules[0]);
+      }
     },
     searchReset() {
       this.searchKeyword = '';
@@ -572,6 +575,13 @@ export default {
           _this.warnData = res.data.data;
           // _this.$store.commit("warnData", res.data.data);
         });
+    },
+    matchYe(filterItem) {
+      const findPage = this.allData.filter(page => {
+        const ifMatch = page.items.filter(s => s.sign===filterItem.sign);
+        return ifMatch.length>0;
+      });
+      this.currentYe = findPage[0].id;
     },
     changeYe(id) {
       var _this = this;
@@ -724,6 +734,7 @@ export default {
           v.custom.collapse = false;
         } else {
           v.custom.collapse = true;
+          _this.matchYe(v);
         }
       });
 
