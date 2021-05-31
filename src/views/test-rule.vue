@@ -39,8 +39,8 @@
       <div>
         <p style="height:40px;padding:0 40px;color:#5d678d" flex="cross:center">项目数据</p>
         <jsonEditor
-          :styleActiveLine="true" 
-          :lint="true" 
+          :styleActiveLine="true"
+          :lint="true"
           scrollbarStyle="overlay"
           theme="material-palenight"
           ref="editor"
@@ -50,8 +50,8 @@
       <div style="border-left:#363b53 1px solid" flex="dir:top">
         <p style="height:40px;padding:0 40px;color:#5d678d" flex="cross:center">规则数据</p>
         <jsonEditor
-          :styleActiveLine="true" 
-          :lint="true" 
+          :styleActiveLine="true"
+          :lint="true"
           scrollbarStyle="overlay"
           theme="material-palenight"
           ref="editor2"
@@ -63,7 +63,7 @@
     <div class="wrap" flex v-show="step=='result'" style="color:#555">
       <div style="padding:40px 60px;width:100%">
 
-        
+
         <div style="padding:20px;background:#fff">
           <h3>单据编号：{{resultData.bills}}</h3>
           <h3 style="margin:20px 0">结果：{{resultData.result}}</h3>
@@ -91,7 +91,7 @@
           </div>
         </div>
 
-     
+
 
         <div
           v-if="resultData.scenes && resultData.scenes.length"
@@ -100,8 +100,13 @@
           <Table style="width:100%" :columns="columns" border :data="tableData" :disabled-hover="true">
 
             <template slot="rules" slot-scope="{row}">
-              <p flex="cross:center" class="table-item" v-for="(v,i) in row.rules" :key="i" :style="{height:(v.lineTotal||1)*50+'px'}">
-                  {{v.ruleName}}：<span :style="{color:v.result?'#666':'#ccc'}">{{v.result}}</span>
+              <p flex="cross:center" class="table-item" v-for="(v,i) in row.rules" :key="i"
+              :style="{height:(v.lineTotal||1)*50+'px', width: 'inherit'}"
+              >
+              <Tooltip :content="v.ruleName" placement="top-start" max-width="300" >
+                 <span style="display:inline-block;width:inherit; white-space: nowrap;text-overflow: ellipsis;overflow: hidden;"> {{v.ruleName}}：</span>
+              </Tooltip >
+                  <span :style="{color:v.result?'#666':'#ccc', width: '5rem','text-align': 'right'}">{{v.result}}</span>
                 </p>
             </template>
 
@@ -122,8 +127,8 @@
                     </p>
                 </template>
             </template>
-          
-            
+
+
           </Table>
           <div style="height:50px"></div>
         </div>
@@ -213,7 +218,7 @@ export default {
             _this.$refs.editor2.setValue(_this.ruleFormat);
             _this.$refs.editor.refresh()
             _this.$refs.editor2.refresh()
-          } 
+          }
         });
     },
     cancel() {
@@ -240,7 +245,7 @@ export default {
             _this.resultData = res.data.data;
 
             _this.step="result"
-            
+
             _.each(_this.resultData.scenes,(v,i)=>{
                     if(v.rules&&v.rules.length){
                         _.each(v.rules,(vv,ii)=>{
@@ -253,8 +258,8 @@ export default {
                         })
                     }
             })
-               
-          
+
+
 
           _this.tableData = JSON.parse(JSON.stringify(_this.resultData.scenes))
 
@@ -267,7 +272,7 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style scoped lang="less">
 [v-cloak] {
   display: none;
 }
@@ -330,14 +335,23 @@ export default {
 .table-item {
   height: 50px;
   border-bottom: #eee 1px solid;
-  color: #666;
-  padding: 0 10px;
-  margin:0 -18px;
+  // color: #666;
+  // padding: 0 10px;
+  // margin:0 -18px;
+  // overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
   overflow: hidden;
 }
 
 .table-item:last-child{
   border-bottom: none;
+}
+.table-item .ivu-tooltip{
+  width: calc(100% - 8rem) ;
+}
+/deep/.table-item .ivu-tooltip .ivu-tooltip-rel {
+  width: 100%;
 }
 
 
