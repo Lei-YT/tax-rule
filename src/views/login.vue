@@ -14,10 +14,10 @@
             >
               <div style="text-align: center">
                 <p style="line-heigth:100px;" flex="main:justify cross:center">
-                  <img src="../assets/logo2.png" style="width: 95px" />
-                  <span style="display:inline-block;line-heigth:100px;font-size:22px;color:#0062B2;font-weight:700;">中铁隧道局</span>
+                  <img src="../assets/logo3.png" style="width: 87px" />
+                  <span style="display:inline-block;line-heigth:100px;font-size:26px;color:#0062B2;font-weight:700;margin-left:.5rem;letter-spacing:.1rem">中铁隧道局</span>
                 </p>
-                <h3 style="margin-top: 13px; color: #777">
+                <h3 style="margin-top: 13px; color: #777;letter-spacing:.1rem">
                   Human-AI协同平台-规则引擎
                 </h3>
                 <!-- <p style="color:#777">Jiaobai Intelligent rule engine</p> -->
@@ -58,7 +58,7 @@
             </div>
           </div>
         </Card>
-        <p style="text-align: center; margin-top: 30px; color: #7fc4d7">
+        <p style="text-align: center; margin-top: 30px; color: #7fc4d7; font-size:20px;">
           中铁隧道局Human-AI协同平台-规则引擎 {{ version }}
         </p>
       </div>
@@ -138,13 +138,17 @@ export default {
   right: 0;
   left: 0;
   background-color: #34333f;
-  background-image: url(../assets/bg.jpg);
-  background-size: auto 100%;
+  background-image: url(../assets/bg.png);
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
 }
 .card {
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1),
     10px 10px 10px rgba(0, 0, 0, 0.1);
+}
+.ivu-btn-primary{
+  background-color: #0062B2;
+  border-color: #0062B2;
 }
 </style>
