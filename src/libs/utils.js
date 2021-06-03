@@ -1,7 +1,7 @@
 let util = {};
 
 util.title = function (title) {
-  title = title ? title + ' - 茭白智能规则引擎' : '茭白智能规则引擎';
+  title = title ? title + ' - 中铁隧道局Human-AI协同平台-规则引擎' : '中铁隧道局Human-AI协同平台-规则引擎';
   window.document.title = title;
 };
 

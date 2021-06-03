@@ -13,8 +13,8 @@ export default {
             top: 50,
             duration: 3
         });
-console.log(`%c 令才智能规则引擎 %c ${this.version} %c`,"background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent")
-        
+console.log(`%c 智能规则引擎 %c ${this.version} %c`,"background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff","background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff","background:transparent")
+
         // this.$router.addRoutes([
         //   {
         //     name:'4444',
@@ -25,7 +25,7 @@ console.log(`%c 令才智能规则引擎 %c ${this.version} %c`,"background:#354
         // console.log(this.$router.options.routes[2].children)
   },
   methods:{
-        
+
   }
 }
 </script>
@@ -44,7 +44,7 @@ div.ivu-table-wrapper {
 div.ivu-table-border th {
     border-right: 1px solid #eee;
 }
-div.ivu-table td, 
+div.ivu-table td,
 div.ivu-table th {
     border-bottom: 1px solid #eee;
 }
@@ -52,7 +52,7 @@ div.ivu-table th {
     background-color: #fcfcfc;
     color:#999
 }
-div.ivu-table-border td, 
+div.ivu-table-border td,
 div.ivu-table-border th {
     border-right: 1px solid #eee;
 }
@@ -207,7 +207,7 @@ div.ivu-table:before {
 ul.ivu-menu-light.ivu-menu-vertical li.ivu-menu-item-active.ivu-menu-item-selected {
   background-color: #eee;
 }
-/* ul.ivu-menu-vertical li.ivu-menu-item, 
+/* ul.ivu-menu-vertical li.ivu-menu-item,
 ul.ivu-menu-vertical li.ivu-menu-submenu-title{
   padding:14px 24px
 

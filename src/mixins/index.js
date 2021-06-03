@@ -9,9 +9,9 @@ const Mixin = {
     },
 
     computed: {
-     
+
         version() {
-            return 'v' +' '+this.$store.state.version
+            return 'V' +' '+this.$store.state.version
         },
         token() {
             return this.$store.state.token
@@ -20,7 +20,7 @@ const Mixin = {
             return this.$store.state.userName
         }
     },
-    
+
     methods: {
         _M(msg) {
             this.$Message.info(msg);

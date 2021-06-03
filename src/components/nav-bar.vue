@@ -2,14 +2,15 @@
   <div v-cloak>
     <div flex class="nav-bar">
       <div flex-box="0">
-        <router-link to="/" class="logo" v-show="side" flex="cross:center">
-          <p style="padding-left: 25px">
-            茭白智能规则引擎
+        <router-link to="/" class="logo" v-show="side" flex="cross:center dir:top">
+          <p style="padding-left: 25px;font-size:15px">
+            中铁隧道局Human-AI协同平台
+          </p>
+          <p style="padding-left: 25px">规则引擎
             <span
               style="font-size: 12px; color: #5b919f; margin: 3px 0 0 5px"
               >{{ version }}</span
-            >
-          </p>
+            ></p>
         </router-link>
         <router-link
           to="/"
@@ -48,7 +49,7 @@
       </div>
 
       <div flex-box="0" flex class="right-icon" style="margin-right: 10px">
-        <!-- 
+        <!--
         <Poptip trigger="hover" transfer placement="bottom-end" width="300" title="切换主题">
           <div class="right-icon-item" flex="main:center cross:center">
             <Icon custom="iconfont icon-clothesfill" size="18" />
@@ -113,7 +114,7 @@ export default {
     },
 
     logout() {
-      
+
       var _this = this;
       _this.submitLoading = true;
       _this.$http
@@ -124,7 +125,7 @@ export default {
           _this.$store.commit("login", "false");
           _this.submitLoading = false;
           _this.$router.push({ name: "Login" });
-          
+
           //关闭浏览器
           // if (
           //   navigator.userAgent.indexOf("Firefox") != -1 ||
