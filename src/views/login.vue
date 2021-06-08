@@ -58,7 +58,7 @@
             </div>
           </div>
         </Card>
-        <p style="text-align: center; margin-top: 30px; color: #7fc4d7; font-size:20px;">
+        <p style="text-align: center; margin-top: 30px; color: #7fc4d7; font-size:20px;color:#fff;">
           中铁隧道局Human-AI协同平台-规则引擎 {{ version }}
         </p>
       </div>

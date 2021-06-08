@@ -1,13 +1,39 @@
 <template>
   <div>
     <nav-bar />
-    <div class="side-bar" :style="side?'width:240px':'width:50px;background-color: #dadde8;'">
+    <div
+      class="side-bar"
+      :style="side ? 'width:240px' : 'width:50px;background-color: #dadde8;'"
+    >
       <side-bar />
     </div>
-    <div class="wrap-box" :style="side?'left:240px':'left:50px'">
+    <div class="wrap-box" :style="side ? 'left:240px' : 'left:50px'">
       <div class="breadcrumb" flex="cross:center">
-        <Breadcrumb>
-          <BreadcrumbItem v-for="(v,i) in breadcrumb" :key="i" :to="`${v.routeName}?${pathquery}`">{{v.title}}</BreadcrumbItem>
+      <div class="right-icon-item" flex="main:center cross:center">
+        <Icon
+          v-if="side"
+          @click="sideSwitch"
+          color="#5f6d8b"
+          :size="20"
+          custom="iconfont icon-back"
+          style="cursor: pointer"
+        />
+        <Icon
+          v-if="!side"
+          @click="sideSwitch"
+          color="#5f6d8b"
+          :size="20"
+          custom="iconfont icon-right"
+          style="cursor: pointer"
+        />
+      </div>
+        <Breadcrumb style="padding-left:20px">
+          <BreadcrumbItem
+            v-for="(v, i) in breadcrumb"
+            :key="i"
+            :to="`${v.routeName}?${pathquery}`"
+            >{{ v.title }}</BreadcrumbItem
+          >
         </Breadcrumb>
       </div>
       <router-view />
@@ -27,9 +53,12 @@ export default {
     return {};
   },
   computed: {
-      pathquery: function() {
-        return this.$route.fullPath.substring(this.$route.fullPath.indexOf('?') + 1, this.$route.fullPath.length)
-      }
+    pathquery: function () {
+      return this.$route.fullPath.substring(
+        this.$route.fullPath.indexOf("?") + 1,
+        this.$route.fullPath.length
+      );
+    },
   },
   mounted() {
     // console.log(this.breadcrumb)
@@ -40,7 +69,11 @@ export default {
     //   _this.getHeight()
     // }, 150), false)
   },
-  methods: {},
+  methods: {
+    sideSwitch() {
+      this.$store.commit("side", !this.$store.state.side);
+    },
+  },
   watch: {
     "$route.fullPath"(newVal, oldVal) {
       // console.log(newVal,oldVal)

@@ -1,63 +1,17 @@
 <template>
   <div v-cloak>
     <div flex class="nav-bar">
-      <div flex-box="0">
-        <router-link to="/" class="logo" v-show="side" flex="cross:center dir:top">
-          <p style="padding-left: 25px;font-size:15px">
-            中铁隧道局Human-AI协同平台
-          </p>
-          <p style="padding-left: 25px">规则引擎
-            <span
-              style="font-size: 12px; color: #5b919f; margin: 3px 0 0 5px"
-              >{{ version }}</span
-            ></p>
-        </router-link>
-        <router-link
-          to="/"
-          style="
-            width: 50px;
-            color: #75829b;
-            height: 45px;
-            background-color: #014c61;
-          "
-          v-show="!side"
-          flex="main:center cross:center"
-        >
-          <Icon :size="24" type="md-home" />
-        </router-link>
-      </div>
 
       <div flex-box="1" flex="cross:center" style="padding-left: 10px">
-        <div class="right-icon-item" flex="main:center cross:center">
-          <Icon
-            v-if="side"
-            @click="sideSwitch"
-            color="#5f6d8b"
-            :size="20"
-            custom="iconfont icon-back"
-            style="cursor: pointer"
-          />
-          <Icon
-            v-if="!side"
-            @click="sideSwitch"
-            color="#5f6d8b"
-            :size="20"
-            custom="iconfont icon-right"
-            style="cursor: pointer"
-          />
-        </div>
+        <p style="padding-left: 14px; font-size: 15px">
+          中铁隧道局Human-AI协同平台-规则引擎
+          <span style="font-size: 12px;  margin: 3px 0 0 5px">{{
+            version
+          }}</span>
+        </p>
       </div>
 
       <div flex-box="0" flex class="right-icon" style="margin-right: 10px">
-        <!--
-        <Poptip trigger="hover" transfer placement="bottom-end" width="300" title="切换主题">
-          <div class="right-icon-item" flex="main:center cross:center">
-            <Icon custom="iconfont icon-clothesfill" size="18" />
-          </div>
-          <div slot="content" style="height:300px">
-            <p style="color:#999;padding:10px 0 10px 0">切换主题</p>
-          </div>
-        </Poptip> -->
 
         <Poptip trigger="click" transfer placement="bottom-end">
           <div class="right-icon-item" flex="main:center cross:center">
@@ -114,12 +68,11 @@ export default {
     },
 
     logout() {
-
       var _this = this;
       _this.submitLoading = true;
       _this.$http
         .post("/logout")
-        .then(function(res) {
+        .then(function (res) {
           _this.$store.commit("token", "");
           _this.$store.commit("userName", "");
           _this.$store.commit("login", "false");
@@ -138,9 +91,8 @@ export default {
           //   window.open("", "_self");
           //   window.close();
           // }
-
         })
-        .catch(function(error) {
+        .catch(function (error) {
           _this.submitLoading = false;
           // console.log(error);
         });
@@ -195,7 +147,7 @@ export default {
 <style scoped>
 .nav-bar {
   height: 45px;
-  background-color: #004052;
+  background-color: #1991DD;
   position: fixed;
   left: 0;
   top: 0;
@@ -209,7 +161,7 @@ export default {
   font-size: 16px;
   color: #65a6b6;
   height: 45px;
-  background-color: #014c61;
+  background-color: #1991DD;
   width: 240px;
 }
 /* .nav-bar .logo:hover {
