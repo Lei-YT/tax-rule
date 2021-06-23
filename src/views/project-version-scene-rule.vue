@@ -679,7 +679,15 @@ export default {
         title: "温馨提示",
         content: "<p>你确定要删除本条规则吗？</p>",
         onOk: () => {
+          const targetObj = this.items[index];
           this.items.splice(index, 1);
+          const allAfterDel = this.allData.map(page => {
+            const fItems = page.items.filter(r => {
+              return r.sign !== targetObj.sign;
+            });
+            return {...page, items: fItems};
+          });
+          this.allData = allAfterDel;
         },
       });
     },
