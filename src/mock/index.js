@@ -9,14 +9,14 @@ const ruleStr = JSON.stringify(ruleData)
 
 const Random = Mock.Random
 
-Mock.mock(/api\/rule\/getRule/, 'post', (req, res) => {
-    // console.log('mock', req, getrule)
-    return Mock.mock(getrule);
-})
-Mock.mock(/api\/func\/tree/, 'get', (req, res) => {
-    // console.log('mock', req, getrule)
-    return Mock.mock(treeData);
-})
+// Mock.mock(/api\/rule\/getRule/, 'post', (req, res) => {
+//     // console.log('mock', req, getrule)
+//     return Mock.mock(getrule);
+// })
+// Mock.mock(/api\/func\/tree/, 'get', (req, res) => {
+//     // console.log('mock', req, getrule)
+//     return Mock.mock(treeData);
+// })
 
 /*
 Mock.mock('/api/login','post', (req, res) => {
